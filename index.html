@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kirthi Shanbhag — Senior AI Engineer</title>
+<!-- Link to external CSS -->
+<link rel="stylesheet" href="css/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -128,6 +130,7 @@
   .tag.orange { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
 
   .status-pill {
+    position: relative; /* anchor ::after tooltip from css/styles.css */
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -140,6 +143,7 @@
     font-family: 'DM Mono', monospace;
     white-space: nowrap;
     letter-spacing: 0.03em;
+    cursor: default;
   }
 
   .status-dot {
@@ -526,10 +530,13 @@
       </div>
     </div>
     <div>
-      <div class="status-pill">
-        <span class="status-dot"></span>
-        Open to roles
-      </div>
+      <div class="status-pill" data-roles="• AI Senior Engineer
+• GenAI Engineer
+• Data Scientist
+• ML Engineer">
+  <span class="status-dot"></span>
+  Open to roles
+</div>
     </div>
   </header>
 
