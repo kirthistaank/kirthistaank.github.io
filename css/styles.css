@@ -1,61 +1,71 @@
-.status-pill {
+.hero {
+    display: flex;
+    justify-content: space-between;  /* left text vs right pill card */
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 72px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.5s ease both;
+  }
+  
+  /* Right card for status pills */
+  .hero-right-card {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 18px 22px;
+    width: 240px;          /* fills space nicely */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  /* Tooltip / hover roles */
+  .status-pill {
     position: relative;
-    display: inline-block;
-    padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
     border-radius: 20px;
-    background-color: #e0f7fa;  /* pill background */
-    color: #00796b;             /* pill text color */
-    font-weight: 500;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
+    padding: 9px 18px;
+    font-size: 12px;
+    color: var(--green);
+    font-family: 'DM Mono', monospace;
+    cursor: default;
   }
   
   .status-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #00796b;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    margin-right: 8px;
-    vertical-align: middle;
+    background: var(--green);
+    animation: pulse 2.2s ease-in-out infinite;
   }
   
-  /* Tooltip below pill with grey background */
+  /* Tooltip for roles on hover */
   .status-pill::after {
     content: attr(data-roles);
     position: absolute;
-    left: 50%;
-    transform: translateX(calc(-50% + 14px)); /* nudged slightly right of center */
-    top: 125%; /* below pill */
-    background-color: #f3f3f7; /* zinc-600 */
-    color: #4e4e50;            /* zinc-300 — bullets + lines inherit grey, not page black */
-    padding: 6px 10px;
-    border-radius: 6px;
-    white-space: pre;          /* preserve line breaks and bullets */
-    font-size: 13px;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #e0e0e0;   /* grey background */
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 6px;
+    white-space: pre-line; /* respects line breaks */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s;
-    z-index: 15;
+    z-index: 10;
   }
   
-  /* Tooltip arrow pointing up */
-  .status-pill::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(calc(-50% + 14px)); /* match tooltip horizontal offset */
-    top: 115%; /* arrow below pill */
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent transparent #dedee3 transparent; /* matches tooltip bg */
-    opacity: 0;
-    transition: opacity 0.2s;
-    pointer-events: none;
-  }
-  
-  /* Show tooltip on hover */
-  .status-pill:hover::after,
-  .status-pill:hover::before {
+  .status-pill:hover::after {
     opacity: 1;
   }
