@@ -39,7 +39,7 @@
   }
 
   .container {
-    max-width: 1080px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 72px 40px 100px;
     position: relative;
@@ -194,6 +194,7 @@
   section:nth-child(3) { animation-delay: 0.10s; }
   section:nth-child(4) { animation-delay: 0.15s; }
   section:nth-child(5) { animation-delay: 0.20s; }
+  section:nth-child(6) { animation-delay: 0.25s; }
 
   /* ── 3-COLUMN PROJECT GRID ── */
   .projects-grid {
@@ -308,6 +309,28 @@
     object-fit: cover; z-index: 3; pointer-events: none;
   }
 
+  .screenshot-zone--video {
+    cursor: default;
+    background: #09090b;
+  }
+
+  .screenshot-zone--video:hover { background: #09090b; }
+
+  .screenshot-zone--video::before,
+  .screenshot-zone--video::after {
+    display: none;
+  }
+
+  .screenshot-zone video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 3;
+    background: #09090b;
+  }
+
   /* ── CARD BODY ── */
   .project-body {
     padding: 20px 22px 24px;
@@ -375,7 +398,7 @@
   }
 
   .highlight::before {
-    content: '→';
+    content: '•';
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     flex-shrink: 0;
@@ -534,8 +557,6 @@
       <h1>Kirthi Shanbhag</h1>
       <p class="hero-bio">
         7+ years building production-grade AI systems, scalable analytics platforms, and applied ML solutions. Currently focused on agentic AI, RAG systems, and knowledge graph-powered applications.
-      <p class="hero-location"> UC Berkeley | MIDS | Graduating May 2026.</p>
-        <br>
       </p>
       <div class="hero-tags">
         <span class="tag green">Agentic AI</span>
@@ -556,9 +577,9 @@
     </div>
   </header>
 
-  <!-- FEATURED PROJECTS -->
+  <!-- AGENTIC AI PROJECTS -->
   <section>
-    <p class="section-label">Featured Projects</p>
+    <p class="section-label">Agentic AI Projects</p>
     <div class="projects-grid">
 
       <!-- CARD 1: ConfidenceOS — green -->
@@ -572,15 +593,15 @@
         </div>
         <div class="project-body">
           <div class="project-title-row">
-            <h2 class="project-name">ConfidenceOS</h2>
+            <h2 class="project-name">🤖 ConfidenceOS</h2>
             <a href="https://github.com/kirthistaank/MIDS/tree/main/ConfidenceOS" class="project-link" target="_blank">↗ GitHub</a>
           </div>
           <p class="project-tagline">
-            Agentic AI interview coach — practice interviews, reframe self-doubt, and negotiate offers. Fully local, zero API cost.
+            Agentic AI interview coach - practice interviews, reframe self-doubt, and negotiate offers. Fully local, zero API cost.
           </p>
           <div class="project-highlights">
             <span class="highlight">LangGraph agentic loop with tool calling, memory &amp; emotion detection</span>
-            <span class="highlight">Hybrid RAG — Pinecone + BM25 with cross-encoder reranking</span>
+            <span class="highlight">Hybrid RAG - Pinecone + BM25 with cross-encoder reranking</span>
             <span class="highlight">Neo4j knowledge graph with Cypher query generation</span>
             <span class="highlight">Multi-mode: Mock Interview, CBT Reframe, Salary Negotiation, STAR</span>
           </div>
@@ -595,42 +616,118 @@
         </div>
       </div>
 
-      <!-- CARD 2: GuidePost — purple -->
-      
+      <!-- CARD 2: CareTrace — purple -->
+      <div class="project-card">
+        <div class="screenshot-zone screenshot-zone--video">
+          <video controls playsinline preload="metadata" aria-label="CareTrace demo video">
+            <source src="videos/caretrace-demo.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+        <div class="project-body">
+          <div class="project-title-row">
+            <h2 class="project-name">🤖 CareTrace</h2>
+            <a href="https://github.com/kirthistaank/MIDS/tree/main/NueroSymbolic_Agentic_AI/CareTrace" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="project-tagline">
+            Neurosymbolic pediatric after-hours triage - LangGraph agent combining LLM interpretation, SNOMED/CPG knowledge graph retrieval, and auditable safety rules.
+          </p>
+          <div class="project-highlights">
+            <span class="highlight">LangGraph pipeline: interpret → KG retrieval → PyDatalog triage → clinician-style explanation</span>
+            <span class="highlight">Neo4j mini-KG grounded in Seattle Children's fever CPG with stable, rule-based dispositions</span>
+            <span class="highlight">Scoped to fever + GI + dehydration risk (under 12) — course prototype, not clinical advice</span>
+            <span class="highlight">Evaluation harness with scenario CSV replay and baseline LLM comparator</span>
+            <span class="highlight">Neurosymbolic architecture: LLM-based interpretation + symbolic safety rules (PyDatalog)</span>
+            <span class="highlight">Traceable pipeline: diagnostic KG step + rule firing audit trail links insights back to evidence</span>
+          </div>
+          <div class="tech-badges">
+            <span class="badge p">Python</span>
+            <span class="badge p">LangGraph</span>
+            <span class="badge p">Neo4j</span>
+            <span class="badge p">PyDatalog</span>
+            <span class="badge p">SNOMED CT</span>
+            <span class="badge dim">Streamlit</span>
+          </div>
+        </div>
+      </div>
 
-      <!-- CARD 3: SafeTrack — orange -->
+    </div>
+  </section>
+
+  <!-- GENAI PROJECTS -->
+  <section>
+    <p class="section-label">GenAI Projects</p>
+    <div class="projects-grid">
+
+      <!-- CARD 1: GuidePost — green -->
+      <div class="project-card">
+        <div class="screenshot-zone screenshot-zone--video">
+          <video controls playsinline preload="metadata" aria-label="GuidePost demo video">
+            <source src="videos/guidepost-demo.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+        <div class="project-body">
+          <div class="project-title-row">
+            <h2 class="project-name">🤖 GuidePost</h2>
+            <a href="https://github.com/kirthistaank/MIDS/tree/main/AI-Private-Coach" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="project-tagline">
+            MIDS capstone — AI interpersonal dynamics coach that analyzes conversation audio and delivers personalized, evidence-based feedback.
+          </p>
+          <div class="project-highlights">
+            <span class="highlight">Multi-signal analysis: language, turn-taking, and vocal delivery (Whisper + diarization)</span>
+            <span class="highlight">RAG over psychology frameworks for observational, goal-aligned coaching</span>
+            <span class="highlight">Communication scoring - clarity, confidence, tone — with pattern tracking over time</span>
+            <span class="highlight">Privacy-first pipeline: speech-to-text → chunking → embeddings → retriever → LLM feedback</span>
+            <span class="highlight">Neo4j knowledge graph with Cypher query generation</span>
+            <span class="highlight">Hybrid RAG - Pinecone + BM25 with cross-encoder reranking</span>
+            <span class="highlight">Multi-mode: Conversation Analysis, Communication Scoring, Pattern Tracking</span>
+            <span class="highlight">Explainable coaching: surfaced graph paths and named frameworks are injected into prompts so feedback cites observable patterns</span>
+          </div>
+          <div class="tech-badges">
+            <span class="badge g">Python</span>
+            <span class="badge g">LangChain</span>
+            <span class="badge g">Whisper</span>
+            <span class="badge g">FastAPI</span>
+            <span class="badge g">FAISS</span>
+            <span class="badge dim">Streamlit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Zero-Shot vs Fine-Tuned — purple -->
       <div class="project-card">
         <div class="screenshot-zone" title="Click to upload screenshot">
           <input type="file" accept="images/*" onchange="loadScreenshot(this)">
-          <img src="images/SafeTrack_1.jpg" alt="SafeTrack Screenshot">
-          <div class="screenshot-icon">📸</div>
+          <img src="images/zeroshotvsfinetuning.png" alt="Zero-Shot vs Fine-Tuned Screenshot">
+          <div class="screenshot-icon">📊</div>
           <span class="screenshot-label">Add Screenshot</span>
           <span class="screenshot-hint">Click to upload</span>
         </div>
         <div class="project-body">
           <div class="project-title-row">
-            <h2 class="project-name">SafeTrack(Graph + AI Routing System)</h2>
-            <a href="https://github.com/kirthistaank/MIDS/tree/main/SafeTrack_Berkeley" class="project-link" target="_blank">↗ GitHub</a>
+            <h2 class="project-name">🤖 Zero-Shot vs Fine-Tuned</h2>
+            <a href="https://github.com/kirthistaank/MIDS/tree/main/Academic_Projects/Medical_NLP_Zeroshot_vs_Finetune_Extended" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
           </div>
           <p class="project-tagline">
-            AI-powered urban safety optimization system for risk-aware routing
+            Clinical text classification comparing zero-shot LLMs (GPT-4) with fine-tuned transformers (PubMedBERT, T5, Mistral-7B + LoRA) on three healthcare datasets.
           </p>
           <div class="project-highlights">
-            <span class="highlight">Graph-based optimization using real-world crash data</span>
-            <span class="highlight">Multi-factor routing (safety + distance + elevation)</span>
-            <span class="highlight">AI-generated explanations for decision transparency</span>
-            <span class="highlight">Safety-focused routing algorithm</span>
-            <span class="highlight">Risk-aware routing algorithm</span>
-            <span class="highlight">Web application for user interaction and results visualization</span>
-            
+            <span class="highlight">Zero-shot: GPT-4, gpt-4o-mini, gpt-4.1-mini with domain-specific prompt engineering</span>
+            <span class="highlight">Fine-tuned: PubMedBERT, T5-base, Mistral-7B + LoRA on medical abstracts, drug reviews, mental health</span>
+            <span class="highlight">Reusable prompt-engineering framework with fuzzy label parsing (rapidfuzz/difflib)</span>
+            <span class="highlight">Comparative metrics: F1, precision, recall, and McNemar statistical test for paradigm comparison</span>
+            <span class="highlight">Medical datasets: abstracts classification, drug sentiment analysis, mental health condition detection</span>
+            <span class="highlight">Reproducible evaluation harness with saved confusion matrices and prediction CSVs</span>
           </div>
           <div class="tech-badges">
-            <span class="badge o">Python</span>
-            <span class="badge o">NetworkX</span>
-            <span class="badge o">Flask</span>
-            <span class="badge o">OpenStreetMap</span>            
-            <span class="badge o">LLM</span>
-            <span class="badge dim">Dijkstra shortest path</span>
+            <span class="badge p">Python</span>
+            <span class="badge p">OpenAI API</span>
+            <span class="badge p">Transformers</span>
+            <span class="badge p">LoRA</span>
+            <span class="badge p">PyTorch</span>
+            <span class="badge dim">sklearn metrics</span>
           </div>
         </div>
       </div>
@@ -714,7 +811,7 @@
         <td>↓ 30% manual engineering</td>
       </tr>
       <tr>
-        <td>LLM-powered onboarding chatbot — Hugging Face + FAISS</td>
+        <td>LLM-powered onboarding chatbot - Hugging Face + FAISS</td>
         <td>Accelerated onboarding</td>
       </tr>
     </table>
