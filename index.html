@@ -235,6 +235,86 @@
   }
   .project-card:nth-child(3):hover { box-shadow: 0 6px 24px rgba(234,88,12,0.12); }
 
+  /* Agentic AI & GenAI Projects — cards 20% larger */
+  section.agentic-ai-projects .projects-grid,
+  section.genai-projects .projects-grid {
+    gap: 21.6px;
+  }
+
+  @media (min-width: 861px) {
+    section.agentic-ai-projects .projects-grid,
+    section.genai-projects .projects-grid {
+      grid-template-columns: repeat(2, minmax(0, 40%));
+    }
+  }
+
+  section.agentic-ai-projects .project-card,
+  section.genai-projects .project-card {
+    border-radius: 12px;
+  }
+
+  section.agentic-ai-projects .project-body,
+  section.genai-projects .project-body {
+    padding: 24px 26.4px 28.8px;
+  }
+
+  section.agentic-ai-projects .project-name,
+  section.genai-projects .project-name {
+    font-size: 24px;
+  }
+
+  section.agentic-ai-projects .project-link,
+  section.genai-projects .project-link {
+    font-size: 12px;
+    padding: 3.6px 10.8px;
+  }
+
+  section.agentic-ai-projects .project-tagline,
+  section.genai-projects .project-tagline {
+    font-size: 15px;
+    margin-bottom: 19.2px;
+  }
+
+  section.agentic-ai-projects .project-highlights,
+  section.genai-projects .project-highlights {
+    gap: 8.4px;
+    margin-bottom: 21.6px;
+  }
+
+  section.agentic-ai-projects .highlight,
+  section.genai-projects .highlight {
+    font-size: 14.4px;
+    gap: 10.8px;
+  }
+
+  section.agentic-ai-projects .highlight::before,
+  section.genai-projects .highlight::before {
+    font-size: 12px;
+  }
+
+  section.agentic-ai-projects .tech-badges,
+  section.genai-projects .tech-badges {
+    gap: 6px;
+  }
+
+  section.agentic-ai-projects .badge,
+  section.genai-projects .badge {
+    font-size: 11.4px;
+    padding: 3.6px 10.8px;
+  }
+
+  section.agentic-ai-projects .screenshot-icon,
+  section.genai-projects .screenshot-icon {
+    font-size: 21.6px;
+  }
+
+  section.agentic-ai-projects .screenshot-label,
+  section.agentic-ai-projects .screenshot-hint,
+  section.genai-projects .screenshot-label,
+  section.genai-projects .screenshot-hint {
+    font-size: 10.8px;
+  }
+
   /* ── SCREENSHOT ZONE ── */
   .screenshot-zone {
     width: 100%;
@@ -532,7 +612,380 @@
     color: #b0b0b8;
     letter-spacing: 0.05em;
   }
+/* ── WRITING / MEDIUM ── */
+.writing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 
+  .writing-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-top: 2.5px solid var(--purple);
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .writing-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(109,40,217,0.10);
+  }
+
+  .writing-card.placeholder-card {
+    opacity: 0.42;
+    cursor: default;
+    pointer-events: none;
+    border-top-color: var(--border);
+    box-shadow: none;
+  }
+
+  .writing-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .writing-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple);
+    background: var(--purple-bg);
+    border: 1px solid var(--purple-border);
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  .writing-source.dim {
+    color: var(--muted);
+    background: var(--surface);
+    border-color: var(--border);
+  }
+
+  .writing-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .writing-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .writing-card.placeholder-card .writing-title { color: var(--muted); }
+
+  .writing-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .writing-read-more {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--purple);
+    margin-top: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ── RESEARCH / ACADEMIC ── */
+  .research-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .paper-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-left: 3px solid var(--green);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: box-shadow 0.2s;
+  }
+
+  .paper-card:hover { box-shadow: 0 4px 20px rgba(5,150,105,0.08); }
+
+  .paper-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .paper-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    flex: 1;
+  }
+
+  .paper-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--green);
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    padding: 5px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+
+  .paper-link:hover { background: var(--green); color: #fff; border-color: var(--green); }
+
+  .paper-link.placeholder {
+    color: var(--muted);
+    background: var(--surface);
+    border-color: var(--border);
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .paper-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .paper-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 1px solid var(--green-border);
+    background: var(--green-bg);
+    color: var(--green);
+    letter-spacing: 0.04em;
+  }
+
+  .paper-tag.course {
+    background: var(--purple-bg);
+    border-color: var(--purple-border);
+    color: var(--purple);
+  }
+
+  .paper-abstract {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+    margin-top: 2px;
+  }
+
+  .paper-abstract summary {
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    user-select: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .paper-abstract summary::before {
+    content: '▸';
+    font-size: 10px;
+    color: var(--green);
+    transition: transform 0.2s;
+  }
+
+  details[open] .paper-abstract summary::before { transform: rotate(90deg); }
+
+  .paper-abstract summary:hover { color: var(--green); }
+
+  .paper-abstract p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-top: 12px;
+  }
+  /* ── BOOK A CALL ── */
+  .booking-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-top: 2.5px solid var(--green);
+    padding: 28px 32px;
+    box-shadow: 0 1px 3px rgba(5,150,105,0.06);
+    transition: box-shadow 0.2s;
+  }
+
+  .booking-card:hover { box-shadow: 0 4px 20px rgba(5,150,105,0.10); }
+
+  .booking-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .booking-top h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .booking-top p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 420px;
+  }
+
+  .booking-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    border-radius: 20px;
+    padding: 7px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .booking-pill-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+
+  .booking-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .booking-info-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .booking-info-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .booking-info-icon svg {
+    width: 16px; height: 16px;
+    stroke: var(--green);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .booking-info-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+
+  .booking-info-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .booking-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .booking-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: var(--green);
+    color: #fff;
+    border-radius: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border: 1px solid var(--green);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .booking-btn-primary:hover { background: #047857; border-color: #047857; }
+
+  .booking-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    background: var(--white);
+    color: var(--muted);
+    border-radius: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .booking-btn-secondary:hover { border-color: var(--green); color: var(--green); }
+
+  .booking-btn-primary svg,
+  .booking-btn-secondary svg {
+    width: 14px; height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     .projects-grid { grid-template-columns: 1fr 1fr; }
@@ -578,7 +1031,7 @@
   </header>
 
   <!-- AGENTIC AI PROJECTS -->
-  <section>
+  <section class="agentic-ai-projects">
     <p class="section-label">Agentic AI Projects</p>
     <div class="projects-grid">
 
@@ -655,7 +1108,7 @@
   </section>
 
   <!-- GENAI PROJECTS -->
-  <section>
+  <section class="genai-projects">
     <p class="section-label">GenAI Projects</p>
     <div class="projects-grid">
 
@@ -734,7 +1187,45 @@
 
     </div>
   </section>
-
+<!-- WRITING -->
+<section>
+  <p class="section-label">Writing</p>
+  <div class="writing-grid">
+<!---
+    <a class="writing-card" href="https://medium.com/p/7a6ad0410e57?postPublishedType=initial" target="_blank">
+      <div class="writing-meta">
+        <span class="writing-source">Medium</span>
+        <span class="writing-date">2026</span>
+      </div>
+      <h3 class="writing-title">From Uncertainty to Opportunity: What WiDS Mentorship Did for My Career</h3>
+      <p class="writing-desc">A personal reflection on how the Women in Data Science mentorship program shaped a career pivot into applied AI — and what it means to build confidence in a technical field.</p>
+      <span class="writing-read-more">Read on Medium ↗</span>
+    </a>
+    -->
+<a class="writing-card" href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank">
+  <div class="writing-meta">
+    <span class="writing-source">Medium</span>
+    <span class="writing-date">2026</span>
+  </div>
+  <h3 class="writing-title">The Bridge Between Intuition and Logic: An Introduction to Neurosymbolic AI</h3>
+  <p class="writing-desc">A deep dive into NeuroSymbolic AI and how combining neural networks with symbolic reasoning can create more explainable, trustworthy, and human-like AI systems that bridge intuition with logical reasoning.</p>
+  <span class="writing-read-more">Read on Medium ↗</span>
+</a>
+<a class="writing-card" href="https://kirthis.medium.com/from-uncertainty-to-opportunity-what-wids-mentorship-did-for-my-career-7a6ad0410e57" target="_blank">
+  <div class="writing-meta">
+  
+        
+          <span class="writing-source">Medium</span>
+          <span class="writing-date">2026</span>
+       
+      </div>
+      <h3 class="writing-title">From Uncertainty to Opportunity: What WiDS Mentorship Did for My Career</h3>
+      <p class="writing-desc">How Mentorship Helped Me Navigate My Career Transition</p>
+    <span class="writing-read-more">Read on Medium ↗</span>
+    
+</a>
+  </div>
+</section>
   <!-- SKILLS -->
   <section>
     <p class="section-label">Technical Skills</p>
@@ -816,7 +1307,100 @@
       </tr>
     </table>
   </section>
+  <!-- RESEARCH -->
+  <section>
+    <p class="section-label">Research &amp; Academic Work</p>
+    <div class="research-list">
 
+      <div class="paper-card">
+        <div class="paper-top">
+          <h3 class="paper-title">Zero-Shot vs. Fine-Tuned: A Systematic Evaluation of Encoder, Decoder, and LLM Architectures for Clinical Text Classification</h3>
+          <a href="https://github.com/kirthistaank/MIDS/blob/main/technicalpapers/Zero-Shot%20vs.%20Fine-Tuned.pdf" class="paper-link placeholder">Technical Whitepaper ↗</a>
+        </div>
+        <div class="paper-tags">
+          <span class="paper-tag course">UC Berkeley MIDS</span>
+          <span class="paper-tag course">NLP Fundamentals</span>
+          <span class="paper-tag">Clinical NLP</span>
+          <span class="paper-tag">Transformers</span>
+          <span class="paper-tag">LLM Evaluation</span>
+          <span class="paper-tag">PubMedBERT</span>
+          <span class="paper-tag">Mistral-7B</span>
+          <span class="paper-tag">LoRA</span>
+          <span class="paper-tag">GPT-4</span>
+        </div>
+        <details class="paper-abstract">
+            <summary>Abstract</summary>
+            <p>This study presents a systematic comparison of zero-shot large language models (LLMs) versus fine-tuned transformer architectures for single-label clinical text classification across three real-world, imbalanced healthcare datasets. We evaluate three architectural paradigms: encoder-based (PubMedBERT), encoder-decoder (T5-base), and decoder-only LLM (Mistral-7B with LoRA fine-tuning), against a zero-shot GPT-4 baseline using structured prompt engineering.</p>
+            <p style="margin-top:10px;">Our results demonstrate that domain-specific fine-tuned encoders (PubMedBERT) achieve superior efficiency-performance trade-offs (F1 0.63–0.97), while zero-shot LLMs provide rapid deployment capabilities without labeled data (F1 0.48–0.71). We introduce a reproducible zero-shot evaluation framework with optimized system prompts, constraint-based output formatting, and statistical significance testing. This work provides actionable guidance for model selection in resource-constrained clinical NLP deployments, balancing accuracy, latency, and computational cost.</p>
+        </details>
+      </div>
+
+    </div>
+  </section>
+<!-- BOOK A CALL -->
+<section>
+  <p class="section-label">Book a Call</p>
+  <div class="booking-card">
+
+    <div class="booking-top">
+      <div>
+        <h3>Let's Talk</h3>
+        <p>Open to discussing AI engineering roles, collaborations, or a quick chat about agentic AI, RAG systems, and production ML.</p>
+      </div>
+      <div class="booking-pill">
+        <span class="booking-pill-dot"></span>
+        Open to roles
+      </div>
+    </div>
+
+    <div class="booking-info-grid">
+      <div class="booking-info-item">
+        <div class="booking-info-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <p class="booking-info-label">Duration</p>
+          <p class="booking-info-value">30 minutes</p>
+        </div>
+      </div>
+      <div class="booking-info-item">
+        <div class="booking-info-icon" style="background:#fff; border-color:#e0e0e0; padding:2px;">
+          <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+        </div>
+        <div>
+          <p class="booking-info-label">Format</p>
+          <p class="booking-info-value">Google Meet</p>
+        </div>
+      </div>
+      <div class="booking-info-item">
+        <div class="booking-info-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <p class="booking-info-label">Timezone</p>
+          <p class="booking-info-value">Your local time</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-actions">
+      <a href="https://cal.com/kirthis/quick-chat" target="_blank" class="booking-btn-primary">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Schedule a call
+      </a>
+      <a href="https://www.linkedin.com/in/kirthishanbhag/" target="_blank" class="booking-btn-secondary">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        Connect on LinkedIn
+      </a>
+    </div>
+
+  </div>
+</section>
   <!-- CONNECT -->
   <section>
     <p class="section-label">Let's Connect</p>
