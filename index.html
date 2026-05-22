@@ -386,7 +386,22 @@
 
   .screenshot-zone img {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; z-index: 3; pointer-events: none;
+    object-fit: contain;
+    object-position: center top;
+    z-index: 3;
+    pointer-events: none;
+    background: var(--surface);
+  }
+
+  .screenshot-zone:has(img[src]) .screenshot-icon,
+  .screenshot-zone:has(img[src]) .screenshot-label,
+  .screenshot-zone:has(img[src]) .screenshot-hint {
+    display: none;
+  }
+
+  .screenshot-zone:has(img[src])::before,
+  .screenshot-zone:has(img[src])::after {
+    display: none;
   }
 
   .screenshot-zone--video {
@@ -1071,11 +1086,8 @@
 
       <!-- CARD 2: CareTrace — purple -->
       <div class="project-card">
-        <div class="screenshot-zone screenshot-zone--video">
-          <video controls playsinline preload="metadata" aria-label="CareTrace demo video">
-            <source src="videos/caretrace-demo.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
+        <div class="screenshot-zone">
+          <img src="images/CareTrace.png" alt="CareTrace Screenshot">
         </div>
         <div class="project-body">
           <div class="project-title-row">
