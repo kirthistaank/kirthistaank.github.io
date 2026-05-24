@@ -382,6 +382,11 @@
 
   .screenshot-zone input[type="file"] {
     position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 2;
+    pointer-events: none;
+  }
+
+  .screenshot-zone:has(img[src]) input[type="file"] {
+    pointer-events: none;
   }
 
   .screenshot-zone img {
@@ -389,7 +394,6 @@
     object-fit: contain;
     object-position: center top;
     z-index: 3;
-    pointer-events: none;
     background: var(--surface);
   }
 
@@ -1001,6 +1005,76 @@
     stroke-linecap: round;
     stroke-linejoin: round;
   }
+
+  /* ── IMAGE ZOOM MODAL ── */
+  .image-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .image-modal.active {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .image-modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-modal img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .image-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    transition: all 0.2s;
+  }
+
+  .image-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .screenshot-zone img {
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .screenshot-zone img:hover {
+    opacity: 0.9;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     .projects-grid { grid-template-columns: 1fr 1fr; }
@@ -1017,6 +1091,14 @@
 </head>
 <body>
 <div class="container">
+
+  <!-- IMAGE ZOOM MODAL -->
+  <div class="image-modal" id="imageModal">
+    <div class="image-modal-content">
+      <button class="image-modal-close" onclick="closeImageModal()">✕</button>
+      <img id="modalImage" src="" alt="">
+    </div>
+  </div>
 
   <!-- HERO -->
   <header class="hero">
@@ -1455,6 +1537,49 @@
     };
     reader.readAsDataURL(file);
   }
+
+  function openImageModal(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    modalImage.src = src;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Add click handlers to screenshot zones with images
+  document.addEventListener('DOMContentLoaded', function() {
+    const screenshotZones = document.querySelectorAll('.screenshot-zone:not(.screenshot-zone--video)');
+    screenshotZones.forEach(zone => {
+      const img = zone.querySelector('img[src]');
+      if (img && img.src) {
+        zone.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openImageModal(img.src);
+        });
+        zone.style.cursor = 'pointer';
+      }
+    });
+  });
+
+  // Close modal when clicking outside the image
+  document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeImageModal();
+    }
+  });
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeImageModal();
+    }
+  });
 </script>
 </body>
 </html>
