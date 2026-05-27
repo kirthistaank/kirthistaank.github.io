@@ -1075,6 +1075,47 @@
     opacity: 0.9;
   }
 
+  /* ── CAROUSEL ── */
+  .carousel-btn {
+    position: absolute;
+    bottom: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s;
+    z-index: 10;
+    white-space: nowrap;
+  }
+
+  .carousel-btn:hover {
+    background: var(--green-bg);
+    color: var(--green);
+    border-color: var(--green-border);
+  }
+
+  .carousel-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .carousel-counter {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     .projects-grid { grid-template-columns: 1fr 1fr; }
@@ -1134,12 +1175,15 @@
 
       <!-- CARD 1: ConfidenceOS — green -->
       <div class="project-card">
-        <div class="screenshot-zone" title="Click to upload screenshot">
-          <input type="file" accept="images/*" onchange="loadScreenshot(this)">
-          <img src="images/coaching-modes.jpg" alt="ConfidenceOS Screenshot">
-          <div class="screenshot-icon">📸</div>
-          <span class="screenshot-label">Add Screenshot</span>
-          <span class="screenshot-hint">Click to upload</span>
+        <div class="screenshot-zone" data-carousel="confidenceOS">
+          <img class="carousel-img" src="images/coaching-modes.jpg" alt="ConfidenceOS UI" data-index="0">
+          <div class="carousel-counter">
+            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
+          </div>
+          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
+            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
+            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
+          </div>
         </div>
         <div class="project-body">
           <div class="project-title-row">
@@ -1168,8 +1212,15 @@
 
       <!-- CARD 2: CareTrace — purple -->
       <div class="project-card">
-        <div class="screenshot-zone">
-          <img src="images/CareTrace.png" alt="CareTrace Screenshot">
+        <div class="screenshot-zone" data-carousel="careTrace">
+          <img class="carousel-img" src="images/CareTrace.png" alt="CareTrace UI" data-index="0">
+          <div class="carousel-counter">
+            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
+          </div>
+          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
+            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
+            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
+          </div>
         </div>
         <div class="project-body">
           <div class="project-title-row">
@@ -1208,11 +1259,19 @@
 
       <!-- CARD 1: GuidePost — green -->
       <div class="project-card">
-        <div class="screenshot-zone screenshot-zone--video">
-          <video controls playsinline preload="metadata" aria-label="GuidePost demo video">
+        <div class="screenshot-zone" data-carousel="guidePost">
+          <video class="carousel-video" controls playsinline preload="metadata" aria-label="GuidePost demo video" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 3; background: #09090b;">
             <source src="videos/guidepost-demo.mp4" type="video/mp4">
             Your browser does not support embedded video.
           </video>
+          <img class="carousel-img" src="images/guidePost-arch-overview.png" alt="GuidePost UI" style="display: none;">
+          <div class="carousel-counter">
+            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
+          </div>
+          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
+            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
+            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
+          </div>
         </div>
         <div class="project-body">
           <div class="project-title-row">
@@ -1246,12 +1305,15 @@
 
       <!-- CARD 2: Zero-Shot vs Fine-Tuned — purple -->
       <div class="project-card">
-        <div class="screenshot-zone" title="Click to upload screenshot">
-          <input type="file" accept="images/*" onchange="loadScreenshot(this)">
-          <img src="images/zeroshotvsfinetuning.png" alt="Zero-Shot vs Fine-Tuned Screenshot">
-          <div class="screenshot-icon">📊</div>
-          <span class="screenshot-label">Add Screenshot</span>
-          <span class="screenshot-hint">Click to upload</span>
+        <div class="screenshot-zone" data-carousel="zeroShotFineTuned">
+          <img class="carousel-img" src="images/zeroshotvsfinetuning.png" alt="Zero-Shot vs Fine-Tuned" data-index="0">
+          <!--<div class="carousel-counter">
+            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
+          </div>
+          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
+            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
+            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
+          </div>-->
         </div>
         <div class="project-body">
           <div class="project-title-row">
@@ -1523,6 +1585,30 @@
 </div>
 
 <script>
+  // Carousel image sets — UI/Demo first, then architecture diagrams
+  const carouselImages = {
+    confidenceOS: [
+      { src: 'images/coaching-modes.jpg', type: 'image', label: 'UI Preview' },
+      { src: 'images/confidenceOS-arch-overview.png', type: 'image', label: 'System Architecture' },
+      { src: 'images/confidenceOS-rag-pipeline.png', type: 'image', label: 'RAG Pipeline' }
+    ],
+    careTrace: [
+      { src: 'images/CareTrace.png', type: 'image', label: 'UI Preview' },
+      { src: 'images/careTrace-arch-overview.jpg', type: 'image', label: 'Neurosymbolic Pipeline' },
+      { src: 'images/careTrace-kg-retrieval.jpg', type: 'image', label: 'Knowledge Graph Layer' }
+    ],
+    guidePost: [
+      { src: 'videos/guidepost-demo.mp4', type: 'video', label: 'Demo Video' },
+      { src: 'images/guidePost-arch-overview.png', type: 'image', label: 'System Architecture' },
+      { src: 'images/guidePost-multi-signal.jpg', type: 'image', label: 'Multi-Signal Analysis' }
+    ],
+    zeroShotFineTuned: [
+      { src: 'images/zeroshotvsfinetuning.png', type: 'image', label: 'Comparison Results' },
+      { src: 'images/zeroshot-architecture.png', type: 'image', label: 'Zero-Shot Pipeline' },
+      { src: 'images/finetuned-architecture.png', type: 'image', label: 'Fine-Tuned Pipeline' }
+    ]
+  };
+
   function loadScreenshot(input) {
     const file = input.files[0];
     if (!file) return;
@@ -1552,9 +1638,90 @@
     document.body.style.overflow = 'auto';
   }
 
+  function prevArch(btn) {
+    const zone = btn.closest('.screenshot-zone');
+    const carouselId = zone.getAttribute('data-carousel');
+    let currentIndex = parseInt(zone.querySelector('.carousel-current').textContent) - 1;
+    const items = carouselImages[carouselId];
+    if (!items) return;
+
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarouselDisplay(zone, carouselId, currentIndex);
+  }
+
+  function nextArch(btn) {
+    const zone = btn.closest('.screenshot-zone');
+    const carouselId = zone.getAttribute('data-carousel');
+    let currentIndex = parseInt(zone.querySelector('.carousel-current').textContent) - 1;
+    const items = carouselImages[carouselId];
+    if (!items) return;
+
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarouselDisplay(zone, carouselId, currentIndex);
+  }
+
+  function updateCarouselDisplay(zone, carouselId, index) {
+    const items = carouselImages[carouselId];
+    const item = items[index];
+    const img = zone.querySelector('.carousel-img');
+    const video = zone.querySelector('.carousel-video');
+
+    if (item.type === 'video') {
+      if (img) img.style.display = 'none';
+      if (video) {
+        video.src = item.src;
+        video.style.display = 'block';
+      }
+    } else {
+      if (video) video.style.display = 'none';
+      if (img) {
+        img.src = item.src;
+        img.style.display = 'block';
+        // Add click handler for image zoom
+        img.style.cursor = 'pointer';
+        img.onclick = function(e) {
+          e.stopPropagation();
+          openImageModal(item.src);
+        };
+      }
+    }
+
+    zone.querySelector('.carousel-current').textContent = index + 1;
+    // Don't disable buttons - allow infinite looping
+  }
+
   // Add click handlers to screenshot zones with images
   document.addEventListener('DOMContentLoaded', function() {
-    const screenshotZones = document.querySelectorAll('.screenshot-zone:not(.screenshot-zone--video)');
+    // Initialize carousel
+    document.querySelectorAll('[data-carousel]').forEach(zone => {
+      const carouselId = zone.getAttribute('data-carousel');
+      const items = carouselImages[carouselId];
+
+      // Initialize with first item
+      if (items && items.length > 0) {
+        const firstItem = items[0];
+        const video = zone.querySelector('.carousel-video');
+        const img = zone.querySelector('.carousel-img');
+
+        if (firstItem.type === 'video' && video) {
+          video.src = firstItem.src;
+          video.style.display = 'block';
+          if (img) img.style.display = 'none';
+        } else if (img) {
+          img.src = firstItem.src;
+          img.style.display = 'block';
+          img.style.cursor = 'pointer';
+          img.onclick = function(e) {
+            e.stopPropagation();
+            openImageModal(firstItem.src);
+          };
+          if (video) video.style.display = 'none';
+        }
+      }
+    });
+
+    // Handle non-carousel screenshots
+    const screenshotZones = document.querySelectorAll('.screenshot-zone:not([data-carousel])');
     screenshotZones.forEach(zone => {
       const img = zone.querySelector('img[src]');
       if (img && img.src) {
