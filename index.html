@@ -241,7 +241,9 @@
   }
 
   @media (min-width: 861px) {
-    section.agentic-ai-projects .projects-grid,
+    section.agentic-ai-projects .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
     section.genai-projects .projects-grid {
       grid-template-columns: repeat(2, minmax(0, 40%));
     }
@@ -1209,10 +1211,10 @@
         </div>
       </div>
 
-      <!-- CARD 2: CareTrace — purple -->
+      <!-- CARD 2: TraceMind — purple -->
       <div class="project-card">
-        <div class="screenshot-zone" data-carousel="careTrace">
-          <img class="carousel-img" src="images/CareTrace.png" alt="CareTrace UI" data-index="0">
+        <div class="screenshot-zone" data-carousel="TraceMind">
+          <img class="carousel-img" src="images/TraceMind_ui.png" alt="TraceMind UI" data-index="0">
           <div class="carousel-counter">
             <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
           </div>
@@ -1223,19 +1225,19 @@
         </div>
         <div class="project-body">
           <div class="project-title-row">
-            <h2 class="project-name">🤖 CareTrace</h2>
-            <a href="https://github.com/kirthistaank/MIDS/tree/main/NueroSymbolic_Agentic_AI/CareTrace" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
+            <h2 class="project-name">🤖 TraceMind</h2>
+            <a href="https://github.com/kirthistaank/TraceMind" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
           </div>
           <p class="project-tagline">
             Neurosymbolic pediatric after-hours triage - LangGraph agent combining LLM interpretation, SNOMED/CPG knowledge graph retrieval, and auditable safety rules.
           </p>
           <div class="project-highlights">
             <span class="highlight">LangGraph pipeline: interpret → KG retrieval → PyDatalog triage → clinician-style explanation</span>
+            <span class="highlight">Security-hardened: comprehensive guardrails testing, jailbreak resistance, and prompt injection defenses</span>
+            <span class="highlight">Adversarial robustness: validated against common attack vectors to ensure safe clinical reasoning</span>
             <span class="highlight">Neo4j mini-KG grounded in Seattle Children's fever CPG with stable, rule-based dispositions</span>
-            <span class="highlight">Scoped to fever + GI + dehydration risk (under 12) — course prototype, not clinical advice</span>
-            <span class="highlight">Evaluation harness with scenario CSV replay and baseline LLM comparator</span>
-            <span class="highlight">Neurosymbolic architecture: LLM-based interpretation + symbolic safety rules (PyDatalog)</span>
-            <span class="highlight">Traceable pipeline: diagnostic KG step + rule firing audit trail links insights back to evidence</span>
+            <span class="highlight">Neurosymbolic architecture: LLM-based interpretation + symbolic safety rules (PyDatalog) prevent hallucination</span>
+            <span class="highlight">Traceable pipeline: diagnostic KG step + rule firing audit trail + safety guardrails link insights back to evidence</span>
           </div>
           <div class="tech-badges">
             <span class="badge p">Python</span>
@@ -1243,6 +1245,45 @@
             <span class="badge p">Neo4j</span>
             <span class="badge p">PyDatalog</span>
             <span class="badge p">SNOMED CT</span>
+            <span class="badge dim">Streamlit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: LifeGraph — orange -->
+      <div class="project-card">
+        <div class="screenshot-zone" data-carousel="LifeGraph">
+          <img class="carousel-img" src="images/lifegraph-ui-preview.jpg" alt="LifeGraph UI" data-index="0">
+          <div class="carousel-counter">
+            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
+          </div>
+          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
+            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
+            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-title-row">
+            <h2 class="project-name">🤖 LifeGraph</h2>
+            <a href="https://github.com/kirthistaank/LifeGraph" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
+          </div>
+          <p class="project-tagline">
+            Neo4j Aura + AI agents for social impact — helps foster youth navigate 25+ fragmented social programs through graph-based reasoning.
+          </p>
+          <div class="project-highlights">
+            <span class="highlight">Knowledge graph reasoning: 127 nodes (programs, orgs, life events) + 246 relationships (TRIGGERS, UNLOCKS, LEADS_TO)</span>
+            <span class="highlight">Three specialized agents: Eligibility Navigator, Pathway Advisor, Resource Locator with multi-hop traversal</span>
+            <span class="highlight">Reveals hidden program sequences (multi-hop chains) users miss through linear search</span>
+            <span class="highlight">Graph-augmented LLM: answers grounded in verified data, eliminates hallucination</span>
+            <span class="highlight">Neo4j Aura Agents + Aura Console with Cypher templates + Text2Cypher translation</span>
+            <span class="highlight">Streamlit web interface: users describe situation → agents return actionable pathways in <250ms</span>
+            <font color="gray" size="1">** This project was Neo4j Hackathon 2026 submission **</font>
+          </div>
+          <div class="tech-badges">
+            <span class="badge o">Neo4j Aura</span>            
+            <span class="badge o">Cypher</span>
+            <span class="badge o">Python</span>
+            <span class="badge o">GraphRAG</span>            
             <span class="badge dim">Streamlit</span>
           </div>
         </div>
@@ -1347,39 +1388,24 @@
 <section>
   <p class="section-label">Writing</p>
   <div class="writing-grid">
-<!---
-    <a class="writing-card" href="https://medium.com/p/7a6ad0410e57?postPublishedType=initial" target="_blank">
+    <a class="writing-card" href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank">
       <div class="writing-meta">
         <span class="writing-source">Medium</span>
         <span class="writing-date">2026</span>
       </div>
-      <h3 class="writing-title">From Uncertainty to Opportunity: What WiDS Mentorship Did for My Career</h3>
-      <p class="writing-desc">A personal reflection on how the Women in Data Science mentorship program shaped a career pivot into applied AI — and what it means to build confidence in a technical field.</p>
+      <h3 class="writing-title">LifeGraph: AI Social Resource Navigator</h3>
+      <p class="writing-desc">How I built a Neo4j knowledge graph + AI agents system to help foster youth navigate 25+ fragmented social programs through intelligent graph reasoning instead of linear search.</p>
       <span class="writing-read-more">Read on Medium ↗</span>
     </a>
-    -->
-<a class="writing-card" href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank">
-  <div class="writing-meta">
-    <span class="writing-source">Medium</span>
-    <span class="writing-date">2026</span>
-  </div>
-  <h3 class="writing-title">The Bridge Between Intuition and Logic: An Introduction to Neurosymbolic AI</h3>
-  <p class="writing-desc">A deep dive into NeuroSymbolic AI and how combining neural networks with symbolic reasoning can create more explainable, trustworthy, and human-like AI systems that bridge intuition with logical reasoning.</p>
-  <span class="writing-read-more">Read on Medium ↗</span>
-</a>
-<a class="writing-card" href="https://kirthis.medium.com/from-uncertainty-to-opportunity-what-wids-mentorship-did-for-my-career-7a6ad0410e57" target="_blank">
-  <div class="writing-meta">
-  
-        
-          <span class="writing-source">Medium</span>
-          <span class="writing-date">2026</span>
-       
+    <a class="writing-card" href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank">
+      <div class="writing-meta">
+        <span class="writing-source">Medium</span>
+        <span class="writing-date">2026</span>
       </div>
-      <h3 class="writing-title">From Uncertainty to Opportunity: What WiDS Mentorship Did for My Career</h3>
-      <p class="writing-desc">How Mentorship Helped Me Navigate My Career Transition</p>
-    <span class="writing-read-more">Read on Medium ↗</span>
-    
-</a>
+      <h3 class="writing-title">The Bridge Between Intuition and Logic: An Introduction to Neurosymbolic AI</h3>
+      <p class="writing-desc">A deep dive into NeuroSymbolic AI and how combining neural networks with symbolic reasoning can create more explainable, trustworthy, and human-like AI systems that bridge intuition with logical reasoning.</p>
+      <span class="writing-read-more">Read on Medium ↗</span>
+    </a>
   </div>
 </section>
   <!-- SKILLS -->
@@ -1591,10 +1617,17 @@
       { src: 'images/confidenceOS-arch-overview.png', type: 'image', label: 'System Architecture' },
       { src: 'images/confidenceOS-rag-pipeline.png', type: 'image', label: 'RAG Pipeline' }
     ],
-    careTrace: [
-      { src: 'images/CareTrace.png', type: 'image', label: 'UI Preview' },
-      { src: 'images/careTrace-arch-overview.jpg', type: 'image', label: 'Neurosymbolic Pipeline' },
-      { src: 'images/careTrace-kg-retrieval.jpg', type: 'image', label: 'Knowledge Graph Layer' }
+    TraceMind: [
+      { src: 'images/TraceMind_ui.png', type: 'image', label: 'UI Preview' },
+      { src: 'images/TraceMind_Disposition.jpg', type: 'image', label: 'Disposition'},
+      { src: 'images/TraceMind_KG_trace.jpg', type: 'image', label: 'KG Trace' },
+      { src: 'images/TraceMind_medSafety.jpg', type: 'image', label: 'Med Safety' },
+      
+    ],
+    LifeGraph: [
+      { src: 'images/lifegraph-ui-preview.jpg', type: 'image', label: 'Web Interface' },
+      { src: 'images/lifegraph_eligibility_auraagent_response.jpg', type: 'image', label: 'Aura Agent Visualization' },
+      { src: 'images/lifegraph_graphschema.jpg', type: 'image', label: 'Knowledge Graph Schema' }
     ],
     guidePost: [
       { src: 'videos/guidepost-demo.mp4', type: 'video', label: 'Demo Video' },
