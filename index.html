@@ -1174,10 +1174,14 @@
     <p class="section-label">Agentic AI Projects</p>
     <div class="projects-grid">
 
-      <!-- CARD 1: ConfidenceOS — green -->
+      <!-- CARD 1: GuidePost — green -->
       <div class="project-card">
-        <div class="screenshot-zone" data-carousel="confidenceOS">
-          <img class="carousel-img" src="images/coaching-modes.jpg" alt="ConfidenceOS UI" data-index="0">
+        <div class="screenshot-zone" data-carousel="guidePost">
+          <video class="carousel-video" controls playsinline preload="metadata" aria-label="GuidePost demo video" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 3; background: #09090b;">
+            <source src="videos/guidepost-demo.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+          <img class="carousel-img" src="images/guidePost-arch-overview.png" alt="GuidePost UI" style="display: none;">
           <div class="carousel-counter">
             <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
           </div>
@@ -1188,25 +1192,30 @@
         </div>
         <div class="project-body">
           <div class="project-title-row">
-            <h2 class="project-name">🤖 ConfidenceOS</h2>
-            <a href="https://github.com/kirthistaank/MIDS/tree/main/ConfidenceOS" class="project-link" target="_blank">↗ GitHub</a>
+            <h2 class="project-name">🤖 GuidePost</h2>
+            <a href="https://github.com/kirthistaank/MIDS/tree/main/AI-Private-Coach" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
           </div>
           <p class="project-tagline">
-            Agentic AI interview coach - practice interviews, reframe self-doubt, and negotiate offers. Fully local, zero API cost.
+            MIDS capstone — AI interpersonal dynamics coach that analyzes conversation audio and delivers personalized, evidence-based feedback.
           </p>
           <div class="project-highlights">
-            <span class="highlight">LangGraph agentic loop with tool calling, memory &amp; emotion detection</span>
-            <span class="highlight">Hybrid RAG - Pinecone + BM25 with cross-encoder reranking</span>
+            <span class="highlight">Multi-signal analysis: language, turn-taking, and vocal delivery (Whisper + diarization)</span>
+            <span class="highlight">RAG over psychology frameworks for observational, goal-aligned coaching</span>
+            <span class="highlight">Communication scoring - clarity, confidence, tone — with pattern tracking over time</span>
+            <span class="highlight">Privacy-first pipeline: speech-to-text → chunking → embeddings → retriever → LLM feedback</span>
             <span class="highlight">Neo4j knowledge graph with Cypher query generation</span>
-            <span class="highlight">Multi-mode: Mock Interview, CBT Reframe, Salary Negotiation, STAR</span>
+            <span class="highlight">Hybrid RAG - Pinecone + BM25 with cross-encoder reranking</span>
+            <span class="highlight">Multi-mode: Conversation Analysis, Communication Scoring, Pattern Tracking</span>
+            <span class="highlight">Explainable coaching: surfaced graph paths and named frameworks are injected into prompts so feedback cites observable patterns</span>
           </div>
           <div class="tech-badges">
             <span class="badge g">Python</span>
-            <span class="badge g">LangGraph</span>
-            <span class="badge g">Pinecone</span>
-            <span class="badge g">Neo4j</span>
+            <span class="badge g">LangChain</span>
+            <span class="badge g">Whisper</span>
             <span class="badge g">FastAPI</span>
-            <span class="badge g">Ollama</span>
+            <span class="badge g">PineCone</span>
+            <span class="badge g">Neo4j</span>
+            <span class="badge dim">Streamlit</span>
           </div>
         </div>
       </div>
@@ -1303,14 +1312,10 @@
     <p class="section-label">GenAI Projects</p>
     <div class="projects-grid">
 
-      <!-- CARD 1: GuidePost — green -->
+      <!-- CARD 1: ConfidenceOS — green -->
       <div class="project-card">
-        <div class="screenshot-zone" data-carousel="guidePost">
-          <video class="carousel-video" controls playsinline preload="metadata" aria-label="GuidePost demo video" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 3; background: #09090b;">
-            <source src="videos/guidepost-demo.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
-          <img class="carousel-img" src="images/guidePost-arch-overview.png" alt="GuidePost UI" style="display: none;">
+        <div class="screenshot-zone" data-carousel="confidenceOS">
+          <img class="carousel-img" src="images/coaching-modes.jpg" alt="ConfidenceOS UI" data-index="0">
           <div class="carousel-counter">
             <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
           </div>
@@ -1321,30 +1326,25 @@
         </div>
         <div class="project-body">
           <div class="project-title-row">
-            <h2 class="project-name">🤖 GuidePost</h2>
-            <a href="https://github.com/kirthistaank/MIDS/tree/main/AI-Private-Coach" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
+            <h2 class="project-name">🤖 ConfidenceOS</h2>
+            <a href="https://github.com/kirthistaank/MIDS/tree/main/ConfidenceOS" class="project-link" target="_blank">↗ GitHub</a>
           </div>
           <p class="project-tagline">
-            MIDS capstone — AI interpersonal dynamics coach that analyzes conversation audio and delivers personalized, evidence-based feedback.
+            Agentic AI interview coach - practice interviews, reframe self-doubt, and negotiate offers. Fully local, zero API cost.
           </p>
           <div class="project-highlights">
-            <span class="highlight">Multi-signal analysis: language, turn-taking, and vocal delivery (Whisper + diarization)</span>
-            <span class="highlight">RAG over psychology frameworks for observational, goal-aligned coaching</span>
-            <span class="highlight">Communication scoring - clarity, confidence, tone — with pattern tracking over time</span>
-            <span class="highlight">Privacy-first pipeline: speech-to-text → chunking → embeddings → retriever → LLM feedback</span>
-            <span class="highlight">Neo4j knowledge graph with Cypher query generation</span>
+            <span class="highlight">LangGraph agentic loop with tool calling, memory &amp; emotion detection</span>
             <span class="highlight">Hybrid RAG - Pinecone + BM25 with cross-encoder reranking</span>
-            <span class="highlight">Multi-mode: Conversation Analysis, Communication Scoring, Pattern Tracking</span>
-            <span class="highlight">Explainable coaching: surfaced graph paths and named frameworks are injected into prompts so feedback cites observable patterns</span>
+            <span class="highlight">Neo4j knowledge graph with Cypher query generation</span>
+            <span class="highlight">Multi-mode: Mock Interview, CBT Reframe, Salary Negotiation, STAR</span>
           </div>
           <div class="tech-badges">
             <span class="badge g">Python</span>
-            <span class="badge g">LangChain</span>
-            <span class="badge g">Whisper</span>
-            <span class="badge g">FastAPI</span>
-            <span class="badge g">PineCone</span>
+            <span class="badge g">LangGraph</span>
+            <span class="badge g">Pinecone</span>
             <span class="badge g">Neo4j</span>
-            <span class="badge dim">Streamlit</span>
+            <span class="badge g">FastAPI</span>
+            <span class="badge g">Ollama</span>
           </div>
         </div>
       </div>
@@ -1394,15 +1394,16 @@
 <section>
   <p class="section-label">Writing</p>
   <div class="writing-grid">
-    <a class="writing-card" href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank">
+    <div class="writing-card" onclick="window.open('https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9', '_blank')" style="cursor: pointer;">
       <div class="writing-meta">
         <span class="writing-source">Medium</span>
         <span class="writing-date">2026</span>
       </div>
-      <h3 class="writing-title">LifeGraph: AI Social Resource Navigator</h3>
-      <p class="writing-desc">How I built a Neo4j knowledge graph + AI agents system to help foster youth navigate 25+ fragmented social programs through intelligent graph reasoning instead of linear search.</p>
-      <span class="writing-read-more">Read on Medium ↗</span>
-    </a>
+      <h3 class="writing-title">Why Graphs Solve Social Program Navigation <span style="font-size: 12px; color: var(--muted);">(Part 1 of 3)</span></h3>
+      <p class="writing-desc">67,000 people lost food assistance in Silicon Valley because the system itself became the barrier. Discovering how graph reasoning can solve fragmented social services navigation through knowledge connectivity instead of linear search.</p>
+      <p style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">LifeGraph series continues: <a href="https://kirthis.medium.com/building-lifegraph-a-technical-deep-dive-fdc0c6cca83b" target="_blank" onclick="event.stopPropagation();" style="color: var(--purple); text-decoration: none; font-weight: 500;">Part 2 (Implementation)</a> · <a href="https://medium.com/@kirthis/scaling-lifegraph-graph-patterns-query-optimization-and-real-production-challenges-f9f450f6f98e" target="_blank" onclick="event.stopPropagation();" style="color: var(--purple); text-decoration: none; font-weight: 500;">Part 3 (Scaling)</a></p>
+      <a class="writing-read-more" href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank" onclick="event.stopPropagation();" style="text-decoration: none;">Read on Medium ↗</a>
+    </div>
     <a class="writing-card" href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank">
       <div class="writing-meta">
         <span class="writing-source">Medium</span>
