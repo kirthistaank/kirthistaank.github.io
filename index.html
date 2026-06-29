@@ -90,6 +90,82 @@
     border-color: var(--purple-border);
   }
 
+  /* ── STATUS PILL IN NAV ── */
+  .nav-status {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--green);
+    background: var(--green-bg);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--green);
+    white-space: nowrap;
+    flex-shrink: 0;
+    cursor: default;
+    margin-left: -20px;
+  }
+
+  /* Tooltip below status pill */
+  .nav-status::after {
+    content: attr(data-roles);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 125%;
+    background-color: #f3f3f7;
+    color: #4e4e50;
+    padding: 6px 10px;
+    border-radius: 10px;
+    white-space: pre;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 15;
+  }
+
+  /* Tooltip arrow pointing up */
+  .nav-status::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 115%;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #dedee3 transparent;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+
+  /* Show tooltip on hover */
+  .nav-status:hover::after,
+  .nav-status:hover::before {
+    opacity: 1;
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
   /* Add body padding for fixed nav */
   body {
     padding-top: 50px;
@@ -191,6 +267,17 @@
   }
 
   .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* ── CIRCULAR PHOTO ── */
+  .hero-photo-circular {
+    width: 187px;
+    height: 187px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--purple);
+    box-shadow: 0 12px 40px rgba(109, 40, 217, 0.15);
+    margin-top: 80px;
+  }
 
   .tag {
     font-family: 'DM Mono', monospace;
@@ -1245,6 +1332,7 @@
     .projects-grid { grid-template-columns: 1fr 1fr; }
     .skills-grid   { grid-template-columns: 1fr 1fr; }
     .hero          { grid-template-columns: 1fr; }
+    .hero-photo-circular { width: 133px; height: 133px; }
   }
 
   @media (max-width: 560px) {
@@ -1259,13 +1347,20 @@
 <!-- STICKY NAVIGATION BAR -->
 <nav class="nav-sticky">
   <div class="nav-container">
-    <div class="nav-logo">My Portfolio</div>
+    <div class="nav-logo">Portfolio</div>
     <div class="nav-links">
       <a class="nav-link" onclick="document.getElementById('writing-section').scrollIntoView({ behavior: 'smooth' })">Writing</a>
       <a class="nav-link" onclick="document.getElementById('skills-section').scrollIntoView({ behavior: 'smooth' })">Technical Skills</a>
       <a class="nav-link" onclick="document.getElementById('impact-section').scrollIntoView({ behavior: 'smooth' })">Industry Impact</a>
       <a class="nav-link" onclick="document.getElementById('research-section').scrollIntoView({ behavior: 'smooth' })">Research</a>
       <a class="nav-link" onclick="document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' })">Contact</a>
+    </div>
+    <div class="nav-status" data-roles="• Senior Applied AI Engineer
+• Senior GenAI Engineer
+• Senior ML Engineer
+• Applied Data Scientist">
+      <span class="status-dot"></span>
+      Open to roles
     </div>
   </div>
 </nav>
@@ -1297,13 +1392,7 @@
       </div>
     </div>
     <div>
-      <div class="status-pill" data-roles="• Senior Applied AI Engineer
-• Senior GenAI Engineer
-• Senior ML Engineer
-• Applied Data Scientist">
-  <span class="status-dot"></span>
-  Open to roles
-</div>
+      <img class="hero-photo-circular" src="images/me.png" alt="Kirthi Shanbhag">
     </div>
   </header>
 
