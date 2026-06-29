@@ -30,6 +30,71 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* ── STICKY NAVIGATION ── */
+  .nav-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text);
+    flex-shrink: 0;
+    margin-left: 20px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    flex: 1;
+  }
+
+  .nav-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    position: relative;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--white);
+  }
+
+  .nav-link:hover {
+    color: var(--purple);
+    background: var(--purple-bg);
+    border-color: var(--purple-border);
+  }
+
+  /* Add body padding for fixed nav */
+  body {
+    padding-top: 50px;
+  }
+
   body {
     background: var(--bg);
     color: var(--text);
@@ -188,7 +253,7 @@
     content: ''; flex: 1; height: 1px; background: var(--border);
   }
 
-  section { margin-bottom: 68px; animation: fadeUp 0.5s ease both; }
+  section { margin-bottom: 68px; animation: fadeUp 0.5s ease both; scroll-margin-top: 70px; }
   section:nth-child(2) { animation-delay: 0.05s; }
   section:nth-child(3) { animation-delay: 0.10s; }
   section:nth-child(4) { animation-delay: 0.15s; }
@@ -632,14 +697,61 @@
     color: #b0b0b8;
     letter-spacing: 0.05em;
   }
-/* ── WRITING / MEDIUM ── */
-.writing-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+/* ── WRITING / MEDIUM — CAROUSEL VERSION ── */
+.writing-section-wrapper {
+    position: relative;
+  }
+
+  .writing-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
     gap: 16px;
   }
 
+  .writing-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .writing-nav-btn:hover:not(:disabled) {
+    background: var(--purple-bg);
+    color: var(--purple);
+    border-color: var(--purple-border);
+  }
+
+  .writing-nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .writing-carousel-container {
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+  }
+
+  .writing-carousel {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.4s cubic-bezier(0.33, 0.66, 0.66, 1);
+    scroll-behavior: smooth;
+  }
+
   .writing-card {
+    flex: 0 0 calc(50% - 8px);
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -657,12 +769,23 @@
     box-shadow: 0 6px 24px rgba(109,40,217,0.10);
   }
 
-  .writing-card.placeholder-card {
-    opacity: 0.42;
-    cursor: default;
-    pointer-events: none;
+  .writing-card.placeholder {
+    opacity: 0.6;
     border-top-color: var(--border);
+    cursor: default;
+  }
+
+  .writing-card.placeholder:hover {
+    transform: none;
     box-shadow: none;
+  }
+
+  .carousel-indicator {
+    text-align: center;
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
   }
 
   .writing-meta {
@@ -1132,6 +1255,21 @@
 </style>
 </head>
 <body>
+
+<!-- STICKY NAVIGATION BAR -->
+<nav class="nav-sticky">
+  <div class="nav-container">
+    <div class="nav-logo">My Portfolio</div>
+    <div class="nav-links">
+      <a class="nav-link" onclick="document.getElementById('writing-section').scrollIntoView({ behavior: 'smooth' })">Writing</a>
+      <a class="nav-link" onclick="document.getElementById('skills-section').scrollIntoView({ behavior: 'smooth' })">Technical Skills</a>
+      <a class="nav-link" onclick="document.getElementById('impact-section').scrollIntoView({ behavior: 'smooth' })">Industry Impact</a>
+      <a class="nav-link" onclick="document.getElementById('research-section').scrollIntoView({ behavior: 'smooth' })">Research</a>
+      <a class="nav-link" onclick="document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' })">Contact</a>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
 
   <!-- IMAGE ZOOM MODAL -->
@@ -1390,33 +1528,118 @@
 
     </div>
   </section>
-<!-- WRITING -->
-<section>
+<!-- WRITING — CAROUSEL VERSION -->
+<section class="writing-section-wrapper" id="writing-section">
   <p class="section-label">Writing</p>
-  <div class="writing-grid">
-    <div class="writing-card" onclick="window.open('https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9', '_blank')" style="cursor: pointer;">
-      <div class="writing-meta">
-        <span class="writing-source">Medium</span>
-        <span class="writing-date">2026</span>
-      </div>
-      <h3 class="writing-title">Why Graphs Solve Social Program Navigation <span style="font-size: 12px; color: var(--muted);">(Part 1 of 3)</span></h3>
-      <p class="writing-desc">67,000 people lost food assistance in Silicon Valley because the system itself became the barrier. Discovering how graph reasoning can solve fragmented social services navigation through knowledge connectivity instead of linear search.</p>
-      <p style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">LifeGraph series continues: <a href="https://kirthis.medium.com/building-lifegraph-a-technical-deep-dive-fdc0c6cca83b" target="_blank" onclick="event.stopPropagation();" style="color: var(--purple); text-decoration: none; font-weight: 500;">Part 2 (Implementation)</a> · <a href="https://medium.com/@kirthis/scaling-lifegraph-graph-patterns-query-optimization-and-real-production-challenges-f9f450f6f98e" target="_blank" onclick="event.stopPropagation();" style="color: var(--purple); text-decoration: none; font-weight: 500;">Part 3 (Scaling)</a></p>
-      <a class="writing-read-more" href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank" onclick="event.stopPropagation();" style="text-decoration: none;">Read on Medium ↗</a>
+
+  <div class="writing-controls">
+    <div style="flex: 1;"></div>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
+      <button class="writing-nav-btn" id="prevBtn" onclick="scrollCarousel(-1)">← Previous</button>
+      <button class="writing-nav-btn" id="nextBtn" onclick="scrollCarousel(1)">Next →</button>
     </div>
-    <a class="writing-card" href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank">
-      <div class="writing-meta">
-        <span class="writing-source">Medium</span>
-        <span class="writing-date">2026</span>
+  </div>
+
+  <div class="writing-carousel-container">
+    <div class="writing-carousel" id="writingCarousel">
+      <!-- Article 1: The Missing Layer in Enterprise AI -->
+      <a class="writing-card" href="https://medium.com/@kirthis/the-missing-layer-in-enterprise-ai-demystifying-the-ai-gateway-c7432a8980c5" target="_blank">
+        <div class="writing-meta">
+          <span class="writing-source">Medium</span>
+          <span class="writing-date">2026</span>
+        </div>
+        <h3 class="writing-title">The Missing Layer in Enterprise AI: Demystifying the AI Gateway</h3>
+        <p class="writing-desc">Exploring the critical infrastructure layer that bridges enterprise systems with large language models. Understanding AI gateways, their role in managing costs, ensuring compliance, and enabling safe production deployments at scale.</p>
+        <span class="writing-read-more">Read on Medium ↗</span>
+      </a>
+
+      <!-- Article 2: Why Graphs Solve Social Program Navigation -->
+      <div class="writing-card" onclick="window.open('https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9', '_blank')" style="cursor: pointer;">
+        <div class="writing-meta">
+          <span class="writing-source">Medium</span>
+          <span class="writing-date">2026</span>
+        </div>
+        <h3 class="writing-title">Why Graphs Solve Social Program Navigation <span style="font-size: 12px; color: var(--muted);">(Part 1 of 3)</span></h3>
+        <p class="writing-desc">67,000 people lost food assistance in Silicon Valley because the system itself became the barrier. Discovering how graph reasoning can solve fragmented social services navigation through knowledge connectivity instead of linear search.</p>
+        <p style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">LifeGraph series continues: <a href="https://medium.com/@kirthis/building-lifegraph-a-technical-deep-dive-fdc0c6cca83b" target="_blank" onclick="event.stopPropagation();" style="color: var(--purple); text-decoration: none; font-weight: 500;">Part 2 (Implementation)</a> · <a href="https://medium.com/@kirthis/scaling-lifegraph-graph-patterns-query-optimization-and-real-production-challenges-f9f450f6f98e" target="_blank" onclick="event.stopPropagation();" style="color: var(--purple); text-decoration: none; font-weight: 500;">Part 3 (Scaling)</a></p>
+        <a class="writing-read-more" href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank" onclick="event.stopPropagation();" style="text-decoration: none;">Read on Medium ↗</a>
       </div>
-      <h3 class="writing-title">The Bridge Between Intuition and Logic: An Introduction to Neurosymbolic AI</h3>
-      <p class="writing-desc">A deep dive into NeuroSymbolic AI and how combining neural networks with symbolic reasoning can create more explainable, trustworthy, and human-like AI systems that bridge intuition with logical reasoning.</p>
-      <span class="writing-read-more">Read on Medium ↗</span>
-    </a>
+
+      <!-- Article 3: The Bridge Between Intuition and Logic -->
+      <a class="writing-card" href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank">
+        <div class="writing-meta">
+          <span class="writing-source">Medium</span>
+          <span class="writing-date">2026</span>
+        </div>
+        <h3 class="writing-title">The Bridge Between Intuition and Logic: An Introduction to Neurosymbolic AI</h3>
+        <p class="writing-desc">A deep dive into NeuroSymbolic AI and how combining neural networks with symbolic reasoning can create more explainable, trustworthy, and human-like AI systems that bridge intuition with logical reasoning.</p>
+        <span class="writing-read-more">Read on Medium ↗</span>
+      </a>
+
+      <!-- Article 4: Growth Journey -->
+      <a class="writing-card" href="https://medium.com/@kirthis/growth-isnt-a-straight-line-my-journey-through-uc-berkeley-s-mids-and-the-art-of-the-pivot-9beb53e79903" target="_blank">
+        <div class="writing-meta">
+          <span class="writing-source">Medium</span>
+          <span class="writing-date">2026</span>
+        </div>
+        <h3 class="writing-title">Growth Isn't a Straight Line: My Journey Through UC Berkeley's MIDS and the Art of the Pivot</h3>
+        <p class="writing-desc">Reflections on navigating career transitions, the value of continuous learning, and how embracing uncertainty led to discovering my passion for AI engineering.</p>
+        <span class="writing-read-more">Read on Medium ↗</span>
+      </a>
+
+      <!-- Article 5: WIDS Mentorship -->
+      <a class="writing-card" href="https://medium.com/@kirthis/from-uncertainty-to-opportunity-what-wids-mentorship-did-for-my-career-7a6ad0410e57" target="_blank">
+        <div class="writing-meta">
+          <span class="writing-source">Medium</span>
+          <span class="writing-date">2026</span>
+        </div>
+        <h3 class="writing-title">From Uncertainty to Opportunity: What WIDS Mentorship Did for My Career</h3>
+        <p class="writing-desc">How strategic mentorship and community support transformed my trajectory in data science and AI. Lessons on finding the right mentors and building meaningful professional relationships.</p>
+        <span class="writing-read-more">Read on Medium ↗</span>
+      </a>
+
+      <!-- Article 6: Hybrid AI Strategy -->
+      <a class="writing-card" href="https://medium.com/@kirthis/the-hybrid-ai-strategy-balancing-geminis-magic-with-local-nlp-models-5214de732363" target="_blank">
+        <div class="writing-meta">
+          <span class="writing-source">Medium</span>
+          <span class="writing-date">2026</span>
+        </div>
+        <h3 class="writing-title">The Hybrid AI Strategy: Balancing Gemini's Magic with Local NLP Models</h3>
+        <p class="writing-desc">Comparing cloud-based LLMs with local NLP models. A practical guide to choosing the right approach for privacy, cost, and latency trade-offs in production systems.</p>
+        <span class="writing-read-more">Read on Medium ↗</span>
+      </a>
+
+      <!-- Article 7 (Placeholder) -->
+      <div class="writing-card placeholder">
+        <div class="writing-meta">
+          <span class="writing-source" style="color: var(--muted); background: var(--surface); border-color: var(--border);">Medium</span>
+          <span class="writing-date">Coming soon</span>
+        </div>
+        <h3 class="writing-title">Article Title Here</h3>
+        <p class="writing-desc">Article description placeholder. Replace this with your article details when ready to publish.</p>
+        <p class="writing-read-more" style="color: var(--muted);">More details coming soon</p>
+      </div>
+
+      <!-- Article 8 (Placeholder) -->
+      <div class="writing-card placeholder">
+        <div class="writing-meta">
+          <span class="writing-source" style="color: var(--muted); background: var(--surface); border-color: var(--border);">Medium</span>
+          <span class="writing-date">Coming soon</span>
+        </div>
+        <h3 class="writing-title">Article Title Here</h3>
+        <p class="writing-desc">Article description placeholder. Replace this with your article details when ready to publish.</p>
+        <p class="writing-read-more" style="color: var(--muted);">More details coming soon</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="carousel-indicator">
+    <span id="carouselCounter">Articles 1-2 of 8</span>
   </div>
 </section>
+
   <!-- SKILLS -->
-  <section>
+  <section id="skills-section">
     <p class="section-label">Technical Skills</p>
     <div class="skills-grid">
       <div class="skill-block">
@@ -1467,7 +1690,7 @@
   </section>
 
   <!-- IMPACT -->
-  <section>
+  <section id="impact-section">
     <p class="section-label">Industry Impact</p>
     <table class="impact-table">
       <tr>
@@ -1497,7 +1720,7 @@
     </table>
   </section>
   <!-- RESEARCH -->
-  <section>
+  <section id="research-section">
     <p class="section-label">Research &amp; Academic Work</p>
     <div class="research-list">
 
@@ -1527,7 +1750,7 @@
     </div>
   </section>
 <!-- BOOK A CALL -->
-<section>
+<section id="contact-section">
   <p class="section-label">Book a Call</p>
   <div class="booking-card">
 
@@ -1785,6 +2008,41 @@
     if (e.key === 'Escape') {
       closeImageModal();
     }
+  });
+
+  // ── CAROUSEL FUNCTIONALITY ──
+  let carouselIndex = 0;
+  const articlesPerView = 2;
+  const totalArticles = 8;
+  const carousel = document.getElementById('writingCarousel');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  function scrollCarousel(direction) {
+    carouselIndex += direction;
+
+    // Clamp index
+    if (carouselIndex < 0) carouselIndex = 0;
+    if (carouselIndex > totalArticles - articlesPerView) carouselIndex = totalArticles - articlesPerView;
+
+    // Calculate transform
+    const cardWidth = carousel.querySelector('.writing-card').offsetWidth;
+    const gap = 16;
+    const translateX = -carouselIndex * (cardWidth + gap);
+    carousel.style.transform = `translateX(${translateX}px)`;
+
+    // Update buttons
+    prevBtn.disabled = carouselIndex === 0;
+    nextBtn.disabled = carouselIndex === totalArticles - articlesPerView;
+
+    // Update counter
+    document.getElementById('carouselCounter').textContent =
+      `Articles ${carouselIndex + 1}-${Math.min(carouselIndex + articlesPerView, totalArticles)} of ${totalArticles}`;
+  }
+
+  // Initialize carousel on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    scrollCarousel(0);
   });
 </script>
 </body>
