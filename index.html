@@ -1,2138 +1,633 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kirthi Shanbhag — Senior AI Engineer</title>
-<!-- Link to external CSS -->
-<link rel="stylesheet" href="css/styles.css">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kirthi Shanbhag — Principal AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:        #fafafa;
-    --surface:   #f4f4f5;
-    --surface2:  #ececed;
-    --border:    #e4e4e7;
-    --text:      #09090b;
-    --muted:     #71717a;
-    /* original accent trio */
-    --green:     #059669;
-    --green-bg:  #ecfdf5;
-    --green-border: #a7f3d0;
-    --purple:    #6d28d9;
-    --purple-bg: #f5f3ff;
-    --purple-border: #c4b5fd;
-    --orange:    #ea580c;
-    --orange-bg: #fff7ed;
-    --orange-border: #fed7aa;
-    --white:     #ffffff;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  /* ── STICKY NAVIGATION ── */
-  .nav-sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 40px;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-
-  .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
-  }
-
-  .nav-logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text);
-    flex-shrink: 0;
-    margin-left: 20px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 28px;
-    flex: 1;
-  }
-
-  .nav-link {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    position: relative;
-    padding: 8px 14px;
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    background: var(--white);
-  }
-
-  .nav-link:hover {
-    color: var(--purple);
-    background: var(--purple-bg);
-    border-color: var(--purple-border);
-  }
-
-  /* ── STATUS PILL IN NAV ── */
-  .nav-status {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--green);
-    background: var(--green-bg);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--green);
-    white-space: nowrap;
-    flex-shrink: 0;
-    cursor: default;
-    margin-left: -20px;
-  }
-
-  /* Tooltip below status pill */
-  .nav-status::after {
-    content: attr(data-roles);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 125%;
-    background-color: #f3f3f7;
-    color: #4e4e50;
-    padding: 6px 10px;
-    border-radius: 10px;
-    white-space: pre;
-    font-size: 13px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-    z-index: 15;
-  }
-
-  /* Tooltip arrow pointing up */
-  .nav-status::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 115%;
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent transparent #dedee3 transparent;
-    opacity: 0;
-    transition: opacity 0.2s;
-    pointer-events: none;
-  }
-
-  /* Show tooltip on hover */
-  .nav-status:hover::after,
-  .nav-status:hover::before {
-    opacity: 1;
-  }
-
-  .status-dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-
-  /* Add body padding for fixed nav */
-  body {
-    padding-top: 50px;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Instrument Sans', sans-serif;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 72px 40px 100px;
-    position: relative;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    gap: 32px;
-    margin-bottom: 72px;
-    
-    animation: fadeUp 0.5s ease both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    color: var(--green);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 1.5px;
-    background: var(--green);
-    border-radius: 2px;
-  }
-  .hero-eyebrow::after {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 1.5px;
-    background: var(--green);
-    border-radius: 2px;
-  }
-  .hero-location {
-    font-size: 10px;
-    color: var(--muted);
-    max-width: 500px;
-    line-height: 1.3;
-    margin-bottom: 2px;
-  }
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(40px, 6vw, 60px);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    color: var(--text);
-    margin-bottom: 22px;
-  }
-
-  h1 em {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(30px, 6vw, 40px);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    color: var(--text);
-    margin-bottom: 22px;
-    color: var(--text);
-  }
-
-  .hero-bio {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 1600px;
-    line-height: 1.85;
-    margin-bottom: 28px;
-  }
-
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-
-  /* ── CIRCULAR PHOTO ── */
-  .hero-photo-circular {
-    width: 187px;
-    height: 187px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--purple);
-    box-shadow: 0 12px 40px rgba(109, 40, 217, 0.15);
-    margin-top: 80px;
-  }
-
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    padding: 5px 13px;
-    border-radius: 4px;
-    letter-spacing: 0.04em;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    background: var(--surface);
-  }
-
-  .tag.green  { background: var(--green-bg);  color: var(--green);  border-color: var(--green-border); }
-  .tag.purple { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-border); }
-  .tag.orange { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
-
-  .status-pill {
-    position: relative; /* anchor ::after tooltip from css/styles.css */
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--green-bg);
-    border: 1px solid var(--green-border);
-    border-radius: 40px;
-    padding: 9px 18px;
-    font-size: 12px;
-    color: var(--green);
-    font-family: 'DM Mono', monospace;
-    white-space: nowrap;
-    letter-spacing: 0.03em;
-    cursor: default;
-  }
-
-  .status-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 2.2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.75); }
-  }
-
-  /* ── SECTION LABEL ── */
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .section-label::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
-  }
-
-  section { margin-bottom: 68px; animation: fadeUp 0.5s ease both; scroll-margin-top: 70px; }
-  section:nth-child(2) { animation-delay: 0.05s; }
-  section:nth-child(3) { animation-delay: 0.10s; }
-  section:nth-child(4) { animation-delay: 0.15s; }
-  section:nth-child(5) { animation-delay: 0.20s; }
-  section:nth-child(6) { animation-delay: 0.25s; }
-
-  /* ── 3-COLUMN PROJECT GRID ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-
-  .project-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-
-  .project-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .project-card:nth-child(1) {
-    border-top: 2.5px solid var(--green);
-    box-shadow: 0 1px 3px rgba(5,150,105,0.06);
-  }
-  .project-card:nth-child(1):hover { box-shadow: 0 6px 24px rgba(5,150,105,0.12); }
-
-  .project-card:nth-child(2) {
-    border-top: 2.5px solid var(--purple);
-    box-shadow: 0 1px 3px rgba(109,40,217,0.06);
-  }
-  .project-card:nth-child(2):hover { box-shadow: 0 6px 24px rgba(109,40,217,0.12); }
-
-  .project-card:nth-child(3) {
-    border-top: 2.5px solid var(--orange);
-    box-shadow: 0 1px 3px rgba(234,88,12,0.06);
-  }
-  .project-card:nth-child(3):hover { box-shadow: 0 6px 24px rgba(234,88,12,0.12); }
-
-  /* Agentic AI & GenAI Projects — cards 20% larger */
-  section.agentic-ai-projects .projects-grid,
-  section.genai-projects .projects-grid {
-    gap: 21.6px;
-  }
-
-  @media (min-width: 861px) {
-    section.agentic-ai-projects .projects-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    section.genai-projects .projects-grid {
-      grid-template-columns: repeat(2, minmax(0, 40%));
-    }
-  }
-
-  section.agentic-ai-projects .project-card,
-  section.genai-projects .project-card {
-    border-radius: 12px;
-  }
-
-  section.agentic-ai-projects .project-body,
-  section.genai-projects .project-body {
-    padding: 24px 26.4px 28.8px;
-  }
-
-  section.agentic-ai-projects .project-name,
-  section.genai-projects .project-name {
-    font-size: 24px;
-  }
-
-  section.agentic-ai-projects .project-link,
-  section.genai-projects .project-link {
-    font-size: 12px;
-    padding: 3.6px 10.8px;
-  }
-
-  section.agentic-ai-projects .project-tagline,
-  section.genai-projects .project-tagline {
-    font-size: 15px;
-    margin-bottom: 19.2px;
-  }
-
-  section.agentic-ai-projects .project-highlights,
-  section.genai-projects .project-highlights {
-    gap: 8.4px;
-    margin-bottom: 21.6px;
-  }
-
-  section.agentic-ai-projects .highlight,
-  section.genai-projects .highlight {
-    font-size: 14.4px;
-    gap: 10.8px;
-  }
-
-  section.agentic-ai-projects .highlight::before,
-  section.genai-projects .highlight::before {
-    font-size: 12px;
-  }
-
-  section.agentic-ai-projects .tech-badges,
-  section.genai-projects .tech-badges {
-    gap: 6px;
-  }
-
-  section.agentic-ai-projects .badge,
-  section.genai-projects .badge {
-    font-size: 11.4px;
-    padding: 3.6px 10.8px;
-  }
-
-  section.agentic-ai-projects .screenshot-icon,
-  section.genai-projects .screenshot-icon {
-    font-size: 21.6px;
-  }
-
-  section.agentic-ai-projects .screenshot-label,
-  section.agentic-ai-projects .screenshot-hint,
-  section.genai-projects .screenshot-label,
-  section.genai-projects .screenshot-hint {
-    font-size: 10.8px;
-  }
-
-  /* ── SCREENSHOT ZONE ── */
-  .screenshot-zone {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.2s;
-    flex-shrink: 0;
-  }
-
-  .screenshot-zone:hover { background: var(--surface2); }
-
-  .screenshot-zone::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 28px 28px;
-    opacity: 0.6;
-  }
-
-  /* tinted dot per card */
-  .project-card:nth-child(1) .screenshot-zone::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(5,150,105,0.06) 0%, transparent 70%);
-  }
-  .project-card:nth-child(2) .screenshot-zone::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(109,40,217,0.06) 0%, transparent 70%);
-  }
-  .project-card:nth-child(3) .screenshot-zone::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(234,88,12,0.06) 0%, transparent 70%);
-  }
-
-  .screenshot-icon { font-size: 18px; position: relative; z-index: 1; opacity: 0.35; }
-
-  .screenshot-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    position: relative;
-    z-index: 1;
-  }
-
-  .screenshot-hint {
-    font-size: 9px;
-    color: #b0b0b8;
-    font-family: 'DM Mono', monospace;
-    position: relative;
-    z-index: 1;
-  }
-
-  .screenshot-zone input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 2;
-    pointer-events: none;
-  }
-
-  .screenshot-zone:has(img[src]) input[type="file"] {
-    pointer-events: none;
-  }
-
-  .screenshot-zone img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: contain;
-    object-position: center top;
-    z-index: 3;
-    background: var(--surface);
-  }
-
-  .screenshot-zone:has(img[src]) .screenshot-icon,
-  .screenshot-zone:has(img[src]) .screenshot-label,
-  .screenshot-zone:has(img[src]) .screenshot-hint {
-    display: none;
-  }
-
-  .screenshot-zone:has(img[src])::before,
-  .screenshot-zone:has(img[src])::after {
-    display: none;
-  }
-
-  .screenshot-zone--video {
-    cursor: default;
-    background: #09090b;
-  }
-
-  .screenshot-zone--video:hover { background: #09090b; }
-
-  .screenshot-zone--video::before,
-  .screenshot-zone--video::after {
-    display: none;
-  }
-
-  .screenshot-zone video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    z-index: 3;
-    background: #09090b;
-  }
-
-  /* ── CARD BODY ── */
-  .project-body {
-    padding: 20px 22px 24px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  .project-title-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-
-  .project-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--text);
-    letter-spacing: -0.015em;
-  }
-
-  .project-link {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    text-decoration: none;
-    padding: 3px 9px;
-    border-radius: 4px;
-    transition: all 0.15s;
-    flex-shrink: 0;
-    border: 1px solid;
-  }
-
-  .project-card:nth-child(1) .project-link { color: var(--green);  background: var(--green-bg);  border-color: var(--green-border); }
-  .project-card:nth-child(2) .project-link { color: var(--purple); background: var(--purple-bg); border-color: var(--purple-border); }
-  .project-card:nth-child(3) .project-link { color: var(--orange); background: var(--orange-bg); border-color: var(--orange-border); }
-
-  .project-card:nth-child(1) .project-link:hover { background: var(--green);  color: #fff; border-color: var(--green); }
-  .project-card:nth-child(2) .project-link:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
-  .project-card:nth-child(3) .project-link:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
-
-  .project-tagline {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-
-  .project-highlights {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    margin-bottom: 18px;
-    flex: 1;
-  }
-
-  .highlight {
-    display: flex;
-    align-items: flex-start;
-    gap: 9px;
-    font-size: 13.5px;
-    color: #52525b;
-    line-height: 1.55;
-  }
-
-  .highlight::before {
-    content: '•';
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .project-card:nth-child(1) .highlight::before { color: var(--green); }
-  .project-card:nth-child(2) .highlight::before { color: var(--purple); }
-  .project-card:nth-child(3) .highlight::before { color: var(--orange); }
-
-  .tech-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
-
-  .badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 9.5px;
-    padding: 3px 9px;
-    border-radius: 3px;
-    letter-spacing: 0.04em;
-    border: 1px solid;
-    transition: opacity 0.15s;
-  }
-
-  .badge.g  { background: var(--green-bg);  color: var(--green);  border-color: var(--green-border); }
-  .badge.p  { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-border); }
-  .badge.o  { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
-  .badge.n  { background: var(--surface);   color: var(--muted);  border-color: var(--border); }
-  .badge.dim { background: var(--surface); color: #b0b0b8; border-color: var(--border); }
-
-  /* ── SKILLS ── */
-  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-
-  .skill-block {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px 22px;
-  }
-
-  .skill-block:nth-child(1) { border-top: 2px solid var(--green); }
-  .skill-block:nth-child(2) { border-top: 2px solid var(--purple); }
-  .skill-block:nth-child(3) { border-top: 2px solid var(--orange); }
-
-  .skill-block-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .skill-block:nth-child(1) .skill-block-title { color: var(--green); }
-  .skill-block:nth-child(2) .skill-block-title { color: var(--purple); }
-  .skill-block:nth-child(3) .skill-block-title { color: var(--orange); }
-
-  .skill-list { display: flex; flex-wrap: wrap; gap: 5px; }
-
-  .skill-chip {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    padding: 3px 9px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    color: #52525b;
-    letter-spacing: 0.03em;
-    cursor: default;
-    transition: all 0.15s;
-  }
-
-  .skill-block:nth-child(1) .skill-chip:hover { background: var(--green-bg);  color: var(--green);  border-color: var(--green-border); }
-  .skill-block:nth-child(2) .skill-chip:hover { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-border); }
-  .skill-block:nth-child(3) .skill-chip:hover { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
-
-  /* ── IMPACT TABLE ── */
-  .impact-table { width: 100%; border-collapse: collapse; }
-
-  .impact-table tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
-  .impact-table tr:hover { background: var(--green-bg); }
-  .impact-table tr:last-child { border-bottom: none; }
-
-  .impact-table td { padding: 14px 0; font-size: 13px; vertical-align: middle; }
-  .impact-table td:first-child { color: var(--text); padding-right: 24px; width: 65%; }
-
-  .impact-table td:last-child {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--green);
-    text-align: right;
-    white-space: nowrap;
-    font-weight: 500;
-  }
-
-  /* ── CONNECT ── */
-  .connect-row { display: flex; gap: 10px; flex-wrap: wrap; }
-
-  .connect-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    background: var(--white);
-    transition: all 0.15s;
-    letter-spacing: 0.04em;
-  }
-
-  .connect-btn:hover { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
-  .connect-btn svg { width: 14px; height: 14px; fill: currentColor; }
-
-  /* ── FOOTER ── */
-  footer {
-    padding-top: 48px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  footer p {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: #b0b0b8;
-    letter-spacing: 0.05em;
-  }
-/* ── WRITING / MEDIUM — CAROUSEL VERSION ── */
-.writing-section-wrapper {
-    position: relative;
-  }
-
-  .writing-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 16px;
-  }
-
-  .writing-nav-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-
-  .writing-nav-btn:hover:not(:disabled) {
-    background: var(--purple-bg);
-    color: var(--purple);
-    border-color: var(--purple-border);
-  }
-
-  .writing-nav-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .writing-carousel-container {
-    overflow: hidden;
-    position: relative;
-    border-radius: 10px;
-  }
-
-  .writing-carousel {
-    display: flex;
-    gap: 16px;
-    transition: transform 0.4s cubic-bezier(0.33, 0.66, 0.66, 1);
-    scroll-behavior: smooth;
-  }
-
-  .writing-card {
-    flex: 0 0 calc(50% - 8px);
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    border-top: 2.5px solid var(--purple);
-    padding: 24px 26px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-decoration: none;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-
-  .writing-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(109,40,217,0.10);
-  }
-
-  .writing-card.placeholder {
-    opacity: 0.6;
-    border-top-color: var(--border);
-    cursor: default;
-  }
-
-  .writing-card.placeholder:hover {
-    transform: none;
-    box-shadow: none;
-  }
-
-  .carousel-indicator {
-    text-align: center;
-    margin-top: 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .writing-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .writing-source {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--purple);
-    background: var(--purple-bg);
-    border: 1px solid var(--purple-border);
-    padding: 3px 9px;
-    border-radius: 3px;
-  }
-
-  .writing-source.dim {
-    color: var(--muted);
-    background: var(--surface);
-    border-color: var(--border);
-  }
-
-  .writing-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-  }
-
-  .writing-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 17px;
-    font-weight: 400;
-    color: var(--text);
-    line-height: 1.35;
-    letter-spacing: -0.01em;
-  }
-
-  .writing-card.placeholder-card .writing-title { color: var(--muted); }
-
-  .writing-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-    flex: 1;
-  }
-
-  .writing-read-more {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--purple);
-    margin-top: 4px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  /* ── RESEARCH / ACADEMIC ── */
-  .research-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .paper-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    border-left: 3px solid var(--green);
-    padding: 24px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    transition: box-shadow 0.2s;
-  }
-
-  .paper-card:hover { box-shadow: 0 4px 20px rgba(5,150,105,0.08); }
-
-  .paper-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .paper-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--text);
-    line-height: 1.35;
-    letter-spacing: -0.01em;
-    flex: 1;
-  }
-
-  .paper-link {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--green);
-    background: var(--green-bg);
-    border: 1px solid var(--green-border);
-    padding: 5px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: all 0.15s;
-  }
-
-  .paper-link:hover { background: var(--green); color: #fff; border-color: var(--green); }
-
-  .paper-link.placeholder {
-    color: var(--muted);
-    background: var(--surface);
-    border-color: var(--border);
-    cursor: default;
-    pointer-events: none;
-  }
-
-  .paper-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .paper-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    padding: 3px 9px;
-    border-radius: 3px;
-    border: 1px solid var(--green-border);
-    background: var(--green-bg);
-    color: var(--green);
-    letter-spacing: 0.04em;
-  }
-
-  .paper-tag.course {
-    background: var(--purple-bg);
-    border-color: var(--purple-border);
-    color: var(--purple);
-  }
-
-  .paper-abstract {
-    border-top: 1px solid var(--border);
-    padding-top: 14px;
-    margin-top: 2px;
-  }
-
-  .paper-abstract summary {
-    cursor: pointer;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    user-select: none;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .paper-abstract summary::before {
-    content: '▸';
-    font-size: 10px;
-    color: var(--green);
-    transition: transform 0.2s;
-  }
-
-  details[open] .paper-abstract summary::before { transform: rotate(90deg); }
-
-  .paper-abstract summary:hover { color: var(--green); }
-
-  .paper-abstract p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-top: 12px;
-  }
-  /* ── BOOK A CALL ── */
-  .booking-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    border-top: 2.5px solid var(--green);
-    padding: 28px 32px;
-    box-shadow: 0 1px 3px rgba(5,150,105,0.06);
-    transition: box-shadow 0.2s;
-  }
-
-  .booking-card:hover { box-shadow: 0 4px 20px rgba(5,150,105,0.10); }
-
-  .booking-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
-
-  .booking-top h3 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--text);
-    letter-spacing: -0.01em;
-    margin-bottom: 6px;
-  }
-
-  .booking-top p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.65;
-    max-width: 420px;
-  }
-
-  .booking-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: var(--green-bg);
-    border: 1px solid var(--green-border);
-    border-radius: 20px;
-    padding: 7px 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--green);
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .booking-pill-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 2.2s ease-in-out infinite;
-  }
-
-  .booking-info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .booking-info-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .booking-info-icon {
-    width: 34px; height: 34px;
-    border-radius: 8px;
-    background: var(--green-bg);
-    border: 1px solid var(--green-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .booking-info-icon svg {
-    width: 16px; height: 16px;
-    stroke: var(--green);
-    fill: none;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .booking-info-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 3px;
-  }
-
-  .booking-info-value {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .booking-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-
-  .booking-btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 22px;
-    background: var(--green);
-    color: #fff;
-    border-radius: 5px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    border: 1px solid var(--green);
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-
-  .booking-btn-primary:hover { background: #047857; border-color: #047857; }
-
-  .booking-btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 20px;
-    background: var(--white);
-    color: var(--muted);
-    border-radius: 5px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-
-  .booking-btn-secondary:hover { border-color: var(--green); color: var(--green); }
-
-  .booking-btn-primary svg,
-  .booking-btn-secondary svg {
-    width: 14px; height: 14px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  /* ── IMAGE ZOOM MODAL ── */
-  .image-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.2s ease;
-  }
-
-  .image-modal.active {
-    display: flex;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .image-modal-content {
-    position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .image-modal img {
-    max-width: 100%;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 8px;
-  }
-
-  .image-modal-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 20px;
-    transition: all 0.2s;
-  }
-
-  .image-modal-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-  }
-
-  .screenshot-zone img {
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .screenshot-zone img:hover {
-    opacity: 0.9;
-  }
-
-  /* ── CAROUSEL ── */
-  .carousel-btn {
-    position: absolute;
-    bottom: 12px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 6px 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.15s;
-    z-index: 10;
-    white-space: nowrap;
-  }
-
-  .carousel-btn:hover {
-    background: var(--green-bg);
-    color: var(--green);
-    border-color: var(--green-border);
-  }
-
-  .carousel-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .carousel-counter {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 4px 10px;
-    border-radius: 4px;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 860px) {
-    .projects-grid { grid-template-columns: 1fr 1fr; }
-    .skills-grid   { grid-template-columns: 1fr 1fr; }
-    .hero          { grid-template-columns: 1fr; }
-    .hero-photo-circular { width: 133px; height: 133px; }
-  }
-
-  @media (max-width: 560px) {
-    .projects-grid { grid-template-columns: 1fr; }
-    .skills-grid   { grid-template-columns: 1fr; }
-    .container     { padding: 48px 20px 72px; }
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #ffffff; }
+a { text-decoration: none; color: var(--accent, #2563eb); }
+a:hover { color: var(--accent, #2563eb); }
+::selection { background: color-mix(in srgb, var(--accent, #2563eb) 22%, transparent); }
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--ink, #111827) 22%, transparent); border-radius: 6px; }
+
+.root {
+  --accent: #2563eb;
+  --accent-soft: rgba(235,95,7,0.08);
+  background: var(--bg, #ffffff);
+  color: var(--ink, #111827);
+  font-family: 'Sora', system-ui, sans-serif;
+  min-height: 100vh;
+  transition: background .3s ease, color .3s ease;
+}
+
+.root.dark {
+  --bg: #0b0d10;
+  --bg2: #14171c;
+  --ink: #f3f5f8;
+  --sub: #98a1b0;
+  --line: rgba(255,255,255,0.10);
+  --shadow: rgba(0,0,0,0.4);
+}
+
+.root:not(.dark) {
+  --bg: #ffffff;
+  --bg2: #f8fafc;
+  --ink: #111827;
+  --sub: #6b7280;
+  --line: rgba(17,24,39,0.10);
+  --shadow: rgba(17,24,39,0.05);
+}
 </style>
 </head>
 <body>
+<div class="root" id="root">
 
-<!-- STICKY NAVIGATION BAR -->
-<nav class="nav-sticky">
-  <div class="nav-container">
-    <div class="nav-logo">Portfolio</div>
-    <div class="nav-links">
-      <a class="nav-link" onclick="document.getElementById('writing-section').scrollIntoView({ behavior: 'smooth' })">Writing</a>
-      <a class="nav-link" onclick="document.getElementById('skills-section').scrollIntoView({ behavior: 'smooth' })">Technical Skills</a>
-      <a class="nav-link" onclick="document.getElementById('impact-section').scrollIntoView({ behavior: 'smooth' })">Industry Impact</a>
-      <a class="nav-link" onclick="document.getElementById('research-section').scrollIntoView({ behavior: 'smooth' })">Research</a>
-      <a class="nav-link" onclick="document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' })">Contact</a>
-    </div>
-    <div class="nav-status" data-roles="• Senior Applied AI Engineer
-• Senior GenAI Engineer
-• Senior ML Engineer
-• Applied Data Scientist">
-      <span class="status-dot"></span>
-      Open to roles
-    </div>
+<!-- NAV -->
+<nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px clamp(20px,6vw,72px);background:color-mix(in srgb,var(--bg,#fff) 82%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line,rgba(17,24,39,.1));">
+  <a href="#home" style="display:flex;align-items:center;gap:11px;color:var(--ink,#111827);">
+    <img src="images/me.png" alt="Kirthi Shanbhag" style="width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid rgba(37,99,235,.25);">
+
+    <span style="font-family:'Space Grotesk';font-weight:600;letter-spacing:-0.01em;font-size:15px;">Kirthi Shanbhag</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,28px);font-size:14px;">
+    <a href="#work" style="color:var(--sub,#6b7280);" onmouseover="this.style.color='var(--ink,#111827)'" onmouseout="this.style.color='var(--sub,#6b7280)'">Work</a>
+    <a href="#impact" style="color:var(--sub,#6b7280);" onmouseover="this.style.color='var(--ink,#111827)'" onmouseout="this.style.color='var(--sub,#6b7280)'">Impact</a>
+    <a href="#writing" style="color:var(--sub,#6b7280);" onmouseover="this.style.color='var(--ink,#111827)'" onmouseout="this.style.color='var(--sub,#6b7280)'">Writing</a>
+    <a href="#skills" style="color:var(--sub,#6b7280);" onmouseover="this.style.color='var(--ink,#111827)'" onmouseout="this.style.color='var(--sub,#6b7280)'">Stack</a>
+    <a href="#research" style="color:var(--sub,#6b7280);" onmouseover="this.style.color='var(--ink,#111827)'" onmouseout="this.style.color='var(--sub,#6b7280)'">Research</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line,rgba(17,24,39,.12));background:transparent;color:var(--sub,#6b7280);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;">
+      <span id="themeDot" style="width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;background:#111827;"></span>
+      <span id="themeLabel">Dark</span>
+    </button>
+    <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:500;color:#fff;background:var(--accent,#2563eb);" onmouseover="this.style.filter='brightness(1.06)'" onmouseout="this.style.filter=''">Open to roles</a>
   </div>
 </nav>
 
-<div class="container">
-
-  <!-- IMAGE ZOOM MODAL -->
-  <div class="image-modal" id="imageModal">
-    <div class="image-modal-content">
-      <button class="image-modal-close" onclick="closeImageModal()">✕</button>
-      <img id="modalImage" src="" alt="">
-    </div>
+<!-- HERO -->
+<header id="home" style="max-width:1080px;margin:0 auto;padding:clamp(70px,10vw,140px) clamp(20px,6vw,72px) clamp(50px,6vw,80px);text-align:center;">
+  <div style="display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;border:1px solid var(--line,rgba(17,24,39,.12));font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--sub,#6b7280);margin-bottom:32px;">
+    <span style="width:7px;height:7px;border-radius:50%;background:var(--accent,#2563eb);"></span>Principal AI Engineer · Available for senior roles
+  </div>
+  <h1 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(42px,6.5vw,80px);line-height:1.02;letter-spacing:-0.035em;margin:0 auto 26px;max-width:18ch;color:var(--ink,#111827);">I architect agentic AI that ships to production at scale.</h1>
+  <p style="font-size:clamp(16px,1.5vw,20px);line-height:1.65;color:var(--sub,#6b7280);max-width:680px;margin:0 auto 38px;">I design enterprise-grade multi-agent orchestration, Graph RAG systems, and production-scale LLM platforms built for reliability, compliance, and explainability. <strong style="color:var(--ink,#111827);font-weight:600;">7+ years in ML/AI</strong> and <strong style="color:var(--ink,#111827);font-weight:600;">15+ in software engineering</strong> — with deep expertise across agentic systems, knowledge graphs, guardrails, and scalable cloud infrastructure on AWS &amp; GCP.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:13px;justify-content:center;margin-bottom:56px;">
+    <a href="#work" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:11px;font-weight:600;font-size:15px;color:#fff;background:var(--accent,#2563eb);box-shadow:0 8px 24px color-mix(in srgb,var(--accent,#2563eb) 26%,transparent);" onmouseover="this.style.filter='brightness(1.06)';this.style.transform='translateY(-2px)'" onmouseout="this.style.filter='';this.style.transform=''">View architecture work →</a>
+    <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:11px;font-weight:500;font-size:15px;color:var(--ink,#111827);border:1px solid var(--line,rgba(17,24,39,.14));background:var(--bg2,#f8fafc);" onmouseover="this.style.borderColor='var(--accent,#2563eb)';this.style.color='var(--accent,#2563eb)'" onmouseout="this.style.borderColor='var(--line,rgba(17,24,39,.14))';this.style.color='var(--ink,#111827)'">Get in touch</a>
   </div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div>
-      <p class="hero-eyebrow">Senior AI Engineer &amp; Data Scientist</p>
-      <h1>Kirthi Shanbhag</h1>
-      <p class="hero-bio">
-        Senior AI Engineer focused on building agentic AI systems, Graph RAG architectures, and production-scale LLM applications. Over 7+ years, I’ve developed scalable AI platforms, distributed analytics systems, and applied ML solutions across AWS and GCP, backed by 15+ years of software engineering and distributed systems experience. My work spans multi-agent orchestration, retrieval-augmented generation, reasoning workflows, vector search, and cloud-native AI infrastructure using LangGraph, LangChain, Neo4j, and modern LLM ecosystems. I enjoy bridging deep software engineering with applied AI system design to build reliable, scalable, and production-ready GenAI applications.
-      </p>
-      <div class="hero-tags">
-        <span class="tag green">Agentic AI</span>
-        <span class="tag purple">RAG Systems</span>
-        <span class="tag orange">Production ML</span>
-        <span class="tag green">Cloud Infrastructure</span>
-        <span class="tag orange">Knowledge Graphs</span>
-      </div>
+  <!-- STATS GRID -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line,rgba(17,24,39,.1));border-radius:16px;overflow:hidden;background:var(--line,rgba(17,24,39,.1));">
+    <div style="background:var(--bg,#fff);padding:22px 14px;">
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(22px,2.6vw,30px);color:var(--ink,#111827);letter-spacing:-0.02em;">7+</div>
+      <div style="font-size:12.5px;color:var(--sub,#6b7280);margin-top:4px;">yrs in ML / AI</div>
     </div>
-    <div>
-      <img class="hero-photo-circular" src="images/me.png" alt="Kirthi Shanbhag">
+    <div style="background:var(--bg,#fff);padding:22px 14px;">
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(22px,2.6vw,30px);color:var(--ink,#111827);letter-spacing:-0.02em;">15+</div>
+      <div style="font-size:12.5px;color:var(--sub,#6b7280);margin-top:4px;">yrs in software</div>
     </div>
-  </header>
-
-  <!-- AGENTIC AI PROJECTS -->
-  <section class="agentic-ai-projects">
-    <p class="section-label">Agentic AI Projects</p>
-    <div class="projects-grid">
-
-      <!-- CARD 1: GuidePost — green -->
-      <div class="project-card">
-        <div class="screenshot-zone" data-carousel="guidePost">
-          <video class="carousel-video" controls playsinline preload="metadata" aria-label="GuidePost demo video" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 3; background: #09090b;">
-            <source src="videos/guidepost-demo.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
-          <img class="carousel-img" src="images/guidePost-arch-overview.png" alt="GuidePost UI" style="display: none;">
-          <div class="carousel-counter">
-            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
-          </div>
-          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
-            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
-            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title-row">
-            <h2 class="project-name">🤖 GuidePost</h2>
-            <a href="https://github.com/kirthistaank/MIDS/tree/main/AI-Private-Coach" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
-          </div>
-          <p class="project-tagline">
-            MIDS capstone — AI interpersonal dynamics coach that analyzes conversation audio and delivers personalized, evidence-based feedback.
-          </p>
-          <div class="project-highlights">
-            <span class="highlight">Multi-signal analysis: language, turn-taking, and vocal delivery (Whisper + diarization)</span>
-            <span class="highlight">RAG over psychology frameworks for observational, goal-aligned coaching</span>
-            <span class="highlight">Communication scoring - clarity, confidence, tone — with pattern tracking over time</span>
-            <span class="highlight">Privacy-first pipeline: speech-to-text → chunking → embeddings → retriever → LLM feedback</span>
-            <span class="highlight">Neo4j knowledge graph with Cypher query generation</span>
-            <span class="highlight">Hybrid RAG - Pinecone + BM25 with cross-encoder reranking</span>
-            <span class="highlight">Multi-mode: Conversation Analysis, Communication Scoring, Pattern Tracking</span>
-            <span class="highlight">Explainable coaching: surfaced graph paths and named frameworks are injected into prompts so feedback cites observable patterns</span>
-          </div>
-          <div class="tech-badges">
-            <span class="badge g">Python</span>
-            <span class="badge g">LangChain</span>
-            <span class="badge g">Whisper</span>
-            <span class="badge g">FastAPI</span>
-            <span class="badge g">PineCone</span>
-            <span class="badge g">Neo4j</span>
-            <span class="badge dim">Streamlit</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 2: TraceMind — purple -->
-      <div class="project-card">
-        <div class="screenshot-zone" data-carousel="TraceMind">
-          <img class="carousel-img" src="images/TraceMind_ui.png" alt="TraceMind UI" data-index="0">
-          <div class="carousel-counter">
-            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
-          </div>
-          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
-            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
-            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title-row">
-            <h2 class="project-name">🤖 TraceMind</h2>
-            
-          </div>
-          <br>
-          <div style="display: flex; gap: 10px;">
-            <a href="https://huggingface.co/spaces/Kirthis/TraceMind" class="project-link" target="_blank" rel="noopener">↗ Website</a>                                     
-            <a href="https://github.com/kirthistaank/TraceMind" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
-            </div>                                                                                                        
-          <p class="project-tagline">
-            <br>
-            Neurosymbolic pediatric after-hours triage - LangGraph agent combining LLM interpretation, SNOMED/CPG knowledge graph retrieval, and auditable safety rules.
-          </p>
-          <div class="project-highlights">
-            <span class="highlight">LangGraph pipeline: interpret → KG retrieval → PyDatalog triage → clinician-style explanation</span>
-            <span class="highlight">Security-hardened: comprehensive guardrails testing, jailbreak resistance, and prompt injection defenses</span>
-            <span class="highlight">Adversarial robustness: validated against common attack vectors to ensure safe clinical reasoning</span>
-            <span class="highlight">Neo4j mini-KG grounded in Seattle Children's fever CPG with stable, rule-based dispositions</span>
-            <span class="highlight">Neurosymbolic architecture: LLM-based interpretation + symbolic safety rules (PyDatalog) prevent hallucination</span>
-            <span class="highlight">Traceable pipeline: diagnostic KG step + rule firing audit trail + safety guardrails link insights back to evidence</span>
-          </div>
-          <div class="tech-badges">
-            <span class="badge p">Python</span>
-            <span class="badge p">LangGraph</span>
-            <span class="badge p">Neo4j</span>
-            <span class="badge p">PyDatalog</span>
-            <span class="badge p">SNOMED CT</span>
-            <span class="badge dim">Streamlit</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 3: LifeGraph — orange -->
-      <div class="project-card">
-        <div class="screenshot-zone" data-carousel="LifeGraph">
-          <img class="carousel-img" src="images/lifegraph-ui-preview.jpg" alt="LifeGraph UI" data-index="0">
-          <div class="carousel-counter">
-            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
-          </div>
-          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
-            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
-            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title-row">
-            <h2 class="project-name">🤖 LifeGraph</h2>
-            <a href="https://github.com/kirthistaank/LifeGraph" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
-          </div>
-          <p class="project-tagline">
-            Neo4j Aura + AI agents for social impact — helps foster youth navigate 25+ fragmented social programs through graph-based reasoning.
-          </p>
-          <div class="project-highlights">
-            <span class="highlight">Knowledge graph reasoning: 127 nodes (programs, orgs, life events) + 246 relationships (TRIGGERS, UNLOCKS, LEADS_TO)</span>
-            <span class="highlight">Three specialized agents: Eligibility Navigator, Pathway Advisor, Resource Locator with multi-hop traversal</span>
-            <span class="highlight">Reveals hidden program sequences (multi-hop chains) users miss through linear search</span>
-            <span class="highlight">Graph-augmented LLM: answers grounded in verified data, eliminates hallucination</span>
-            <span class="highlight">Neo4j Aura Agents + Aura Console with Cypher templates + Text2Cypher translation</span>
-            <span class="highlight">Streamlit web interface: users describe situation → agents return actionable pathways in <250ms</span>
-            <font color="gray" size="1">** This project was Neo4j Hackathon 2026 submission **</font>
-          </div>
-          <div class="tech-badges">
-            <span class="badge o">Neo4j Aura</span>            
-            <span class="badge o">Cypher</span>
-            <span class="badge o">Python</span>
-            <span class="badge o">GraphRAG</span>            
-            <span class="badge dim">Streamlit</span>
-          </div>
-        </div>
-      </div>
-
+    <div style="background:var(--bg,#fff);padding:22px 14px;">
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(22px,2.6vw,30px);color:var(--ink,#111827);letter-spacing:-0.02em;">5</div>
+      <div style="font-size:12.5px;color:var(--sub,#6b7280);margin-top:4px;">production AI systems</div>
     </div>
-  </section>
-
-  <!-- GENAI PROJECTS -->
-  <section class="genai-projects">
-    <p class="section-label">GenAI Projects</p>
-    <div class="projects-grid">
-
-      <!-- CARD 1: ConfidenceOS — green -->
-      <div class="project-card">
-        <div class="screenshot-zone" data-carousel="confidenceOS">
-          <img class="carousel-img" src="images/coaching-modes.jpg" alt="ConfidenceOS UI" data-index="0">
-          <div class="carousel-counter">
-            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
-          </div>
-          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
-            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
-            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-title-row">
-            <h2 class="project-name">🤖 ConfidenceOS</h2>
-            <a href="https://github.com/kirthistaank/MIDS/tree/main/ConfidenceOS" class="project-link" target="_blank">↗ GitHub</a>
-          </div>
-          <p class="project-tagline">
-            Agentic AI interview coach - practice interviews, reframe self-doubt, and negotiate offers. Fully local, zero API cost.
-          </p>
-          <div class="project-highlights">
-            <span class="highlight">LangGraph agentic loop with tool calling, memory &amp; emotion detection</span>
-            <span class="highlight">Hybrid RAG - Pinecone + BM25 with cross-encoder reranking</span>
-            <span class="highlight">Neo4j knowledge graph with Cypher query generation</span>
-            <span class="highlight">Multi-mode: Mock Interview, CBT Reframe, Salary Negotiation, STAR</span>
-          </div>
-          <div class="tech-badges">
-            <span class="badge g">Python</span>
-            <span class="badge g">LangGraph</span>
-            <span class="badge g">Pinecone</span>
-            <span class="badge g">Neo4j</span>
-            <span class="badge g">FastAPI</span>
-            <span class="badge g">Ollama</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 2: Zero-Shot vs Fine-Tuned — purple -->
-      <div class="project-card">
-        <div class="screenshot-zone" data-carousel="zeroShotFineTuned">
-          <img class="carousel-img" src="images/zeroshotvsfinetuning.png" alt="Zero-Shot vs Fine-Tuned" data-index="0">
-          <!--<div class="carousel-counter">
-            <span class="carousel-current">1</span> / <span class="carousel-total">3</span>
-          </div>
-          <div style="position: absolute; bottom: 12px; right: 12px; gap: 8px; display: flex;">
-            <button class="carousel-btn carousel-prev" onclick="prevArch(this)">← Prev</button>
-            <button class="carousel-btn carousel-next" onclick="nextArch(this)">Next →</button>
-          </div>-->
-        </div>
-        <div class="project-body">
-          <div class="project-title-row">
-            <h2 class="project-name">🤖 Zero-Shot vs Fine-Tuned</h2>
-            <a href="https://github.com/kirthistaank/MIDS/tree/main/Academic_Projects/Medical_NLP_Zeroshot_vs_Finetune_Extended" class="project-link" target="_blank" rel="noopener">↗ GitHub</a>
-          </div>
-          <p class="project-tagline">
-            Clinical text classification comparing zero-shot LLMs (GPT-4) with fine-tuned transformers (PubMedBERT, T5, Mistral-7B + LoRA) on three healthcare datasets.
-          </p>
-          <div class="project-highlights">
-            <span class="highlight">Zero-shot: GPT-4, gpt-4o-mini, gpt-4.1-mini with domain-specific prompt engineering</span>
-            <span class="highlight">Fine-tuned: PubMedBERT, T5-base, Mistral-7B + LoRA on medical abstracts, drug reviews, mental health</span>
-            <span class="highlight">Reusable prompt-engineering framework with fuzzy label parsing (rapidfuzz/difflib)</span>
-            <span class="highlight">Comparative metrics: F1, precision, recall, and McNemar statistical test for paradigm comparison</span>
-            <span class="highlight">Medical datasets: abstracts classification, drug sentiment analysis, mental health condition detection</span>
-            <span class="highlight">Reproducible evaluation harness with saved confusion matrices and prediction CSVs</span>
-          </div>
-          <div class="tech-badges">
-            <span class="badge p">Python</span>
-            <span class="badge p">OpenAI API</span>
-            <span class="badge p">Transformers</span>
-            <span class="badge p">LoRA</span>
-            <span class="badge p">PyTorch</span>
-            <span class="badge dim">sklearn metrics</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-<!-- WRITING — CAROUSEL VERSION -->
-<section class="writing-section-wrapper" id="writing-section">
-  <p class="section-label">Writing</p>
-
-  <div class="writing-controls">
-    <div style="flex: 1;"></div>
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
-      <button class="writing-nav-btn" id="prevBtn" onclick="scrollCarousel(-1)">← Previous</button>
-      <button class="writing-nav-btn" id="nextBtn" onclick="scrollCarousel(1)">Next →</button>
+    <div style="background:var(--bg,#fff);padding:22px 14px;">
+      <div style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(22px,2.6vw,30px);color:var(--ink,#111827);letter-spacing:-0.02em;">MIDS</div>
+      <div style="font-size:12.5px;color:var(--sub,#6b7280);margin-top:4px;">UC Berkeley</div>
     </div>
   </div>
+</header>
 
-  <div class="writing-carousel-container">
-    <div class="writing-carousel" id="writingCarousel">
-      <!-- Article 1: The Missing Layer in Enterprise AI -->
-      <a class="writing-card" href="https://medium.com/@kirthis/the-missing-layer-in-enterprise-ai-demystifying-the-ai-gateway-c7432a8980c5" target="_blank">
-        <div class="writing-meta">
-          <span class="writing-source">Medium</span>
-          <span class="writing-date">2026</span>
-        </div>
-        <h3 class="writing-title">The Missing Layer in Enterprise AI: Demystifying the AI Gateway</h3>
-        <p class="writing-desc">Exploring the critical infrastructure layer that bridges enterprise systems with large language models. Understanding AI gateways, their role in managing costs, ensuring compliance, and enabling safe production deployments at scale.</p>
-        <span class="writing-read-more">Read on Medium ↗</span>
-      </a>
-
-      <!-- Article 2: Why Graphs Solve Social Program Navigation -->
-      <div class="writing-card" onclick="window.open('https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9', '_blank')" style="cursor: pointer;">
-        <div class="writing-meta">
-          <span class="writing-source">Medium</span>
-          <span class="writing-date">2026</span>
-        </div>
-        <h3 class="writing-title">Why Graphs Solve Social Program Navigation <span style="font-size: 12px; color: var(--muted);">(Part 1 of 3)</span></h3>
-        <p class="writing-desc">67,000 people lost food assistance in Silicon Valley because the system itself became the barrier. Discovering how graph reasoning can solve fragmented social services navigation through knowledge connectivity instead of linear search.</p>
-        <p style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">LifeGraph series continues: <a href="https://medium.com/@kirthis/building-lifegraph-a-technical-deep-dive-fdc0c6cca83b" target="_blank" onclick="event.stopPropagation();" style="color: var(--purple); text-decoration: none; font-weight: 500;">Part 2 (Implementation)</a> · <a href="https://medium.com/@kirthis/scaling-lifegraph-graph-patterns-query-optimization-and-real-production-challenges-f9f450f6f98e" target="_blank" onclick="event.stopPropagation();" style="color: var(--purple); text-decoration: none; font-weight: 500;">Part 3 (Scaling)</a></p>
-        <a class="writing-read-more" href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank" onclick="event.stopPropagation();" style="text-decoration: none;">Read on Medium ↗</a>
-      </div>
-
-      <!-- Article 3: The Bridge Between Intuition and Logic -->
-      <a class="writing-card" href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank">
-        <div class="writing-meta">
-          <span class="writing-source">Medium</span>
-          <span class="writing-date">2026</span>
-        </div>
-        <h3 class="writing-title">The Bridge Between Intuition and Logic: An Introduction to Neurosymbolic AI</h3>
-        <p class="writing-desc">A deep dive into NeuroSymbolic AI and how combining neural networks with symbolic reasoning can create more explainable, trustworthy, and human-like AI systems that bridge intuition with logical reasoning.</p>
-        <span class="writing-read-more">Read on Medium ↗</span>
-      </a>
-
-      <!-- Article 4: Growth Journey -->
-      <a class="writing-card" href="https://medium.com/@kirthis/growth-isnt-a-straight-line-my-journey-through-uc-berkeley-s-mids-and-the-art-of-the-pivot-9beb53e79903" target="_blank">
-        <div class="writing-meta">
-          <span class="writing-source">Medium</span>
-          <span class="writing-date">2026</span>
-        </div>
-        <h3 class="writing-title">Growth Isn't a Straight Line: My Journey Through UC Berkeley's MIDS and the Art of the Pivot</h3>
-        <p class="writing-desc">Reflections on navigating career transitions, the value of continuous learning, and how embracing uncertainty led to discovering my passion for AI engineering.</p>
-        <span class="writing-read-more">Read on Medium ↗</span>
-      </a>
-
-      <!-- Article 5: WIDS Mentorship -->
-      <a class="writing-card" href="https://medium.com/@kirthis/from-uncertainty-to-opportunity-what-wids-mentorship-did-for-my-career-7a6ad0410e57" target="_blank">
-        <div class="writing-meta">
-          <span class="writing-source">Medium</span>
-          <span class="writing-date">2026</span>
-        </div>
-        <h3 class="writing-title">From Uncertainty to Opportunity: What WIDS Mentorship Did for My Career</h3>
-        <p class="writing-desc">How strategic mentorship and community support transformed my trajectory in data science and AI. Lessons on finding the right mentors and building meaningful professional relationships.</p>
-        <span class="writing-read-more">Read on Medium ↗</span>
-      </a>
-
-      <!-- Article 6: Hybrid AI Strategy -->
-      <a class="writing-card" href="https://medium.com/@kirthis/the-hybrid-ai-strategy-balancing-geminis-magic-with-local-nlp-models-5214de732363" target="_blank">
-        <div class="writing-meta">
-          <span class="writing-source">Medium</span>
-          <span class="writing-date">2026</span>
-        </div>
-        <h3 class="writing-title">The Hybrid AI Strategy: Balancing Gemini's Magic with Local NLP Models</h3>
-        <p class="writing-desc">Comparing cloud-based LLMs with local NLP models. A practical guide to choosing the right approach for privacy, cost, and latency trade-offs in production systems.</p>
-        <span class="writing-read-more">Read on Medium ↗</span>
-      </a>
-
-      <!-- Article 7 (Placeholder) -->
-      <div class="writing-card placeholder">
-        <div class="writing-meta">
-          <span class="writing-source" style="color: var(--muted); background: var(--surface); border-color: var(--border);">Medium</span>
-          <span class="writing-date">Coming soon</span>
-        </div>
-        <h3 class="writing-title">Article Title Here</h3>
-        <p class="writing-desc">Article description placeholder. Replace this with your article details when ready to publish.</p>
-        <p class="writing-read-more" style="color: var(--muted);">More details coming soon</p>
-      </div>
-
-      <!-- Article 8 (Placeholder) -->
-      <div class="writing-card placeholder">
-        <div class="writing-meta">
-          <span class="writing-source" style="color: var(--muted); background: var(--surface); border-color: var(--border);">Medium</span>
-          <span class="writing-date">Coming soon</span>
-        </div>
-        <h3 class="writing-title">Article Title Here</h3>
-        <p class="writing-desc">Article description placeholder. Replace this with your article details when ready to publish.</p>
-        <p class="writing-read-more" style="color: var(--muted);">More details coming soon</p>
-      </div>
-    </div>
+<!-- WORK -->
+<section id="work" style="max-width:1280px;margin:0 auto;padding:clamp(48px,6vw,90px) clamp(20px,6vw,72px);">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:8px;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent,#2563eb);">Selected work</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--sub,#6b7280);">architecture-first · enterprise-scale</span>
   </div>
+  <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.6vw,42px);letter-spacing:-0.02em;margin:0 0 12px;color:var(--ink,#111827);">Systems I've designed &amp; built</h2>
+  <p style="font-size:15px;color:var(--sub,#6b7280);max-width:680px;margin:0 0 40px;">Each project leads with its system architecture — the agent orchestration layer, the reasoning pipeline, the guardrail design, and how it stays reliable in production at scale. Each project is architecture-first — showing how systems are built, not just what they do.</p>
 
-  <div class="carousel-indicator">
-    <span id="carouselCounter">Articles 1-2 of 8</span>
+  <div style="display:flex;flex-direction:column;gap:24px;">
+
+    <!-- PROJECT 0: AgentGateway -->
+    <article class="card" style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);overflow:hidden;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
+      <div style="background:var(--bg2,#f8fafc);border-bottom:1px solid var(--line,rgba(17,24,39,.09));padding:26px clamp(20px,3vw,34px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);">System architecture</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;background:color-mix(in srgb,var(--accent,#2563eb) 8%,transparent);color:var(--accent,#2563eb);">Enterprise · Multi-Agent · API Gateway</span>
+        </div>
+        <div style="display:flex;align-items:stretch;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Client app request</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Auth + rate limit</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Guardrails agent</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Model router</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Routed LLM call</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Audit-traced response</div></div>
+        </div>
+      </div>
+      <div style="padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px);align-items:start;">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:24px;margin:0;color:var(--ink,#111827);">AgentGateway</h3>
+            <a href="https://medium.com/@kirthis/the-missing-layer-in-enterprise-ai-demystifying-the-ai-gateway-c7432a8980c5" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:5px 11px;border-radius:8px;border:1px solid var(--line,rgba(17,24,39,.14));color:var(--sub,#6b7280);">↗ Article</a>
+          </div>
+          <p style="font-size:15px;line-height:1.65;color:var(--sub,#6b7280);margin:0 0 20px;">Production-ready enterprise API gateway that centralizes LLM orchestration across 5 specialized agentic applications — HR, Legal, Engineering, Sales, and Support. A 9-layer architecture enforces PII detection, prompt injection defense, real-time cost management, and distributed rate limiting — demonstrating enterprise AI platform engineering designed for compliance, reliability, and scale across 50+ LLM providers with zero vendor lock-in.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">FastAPI</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">LiteLLM</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">PostgreSQL</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Redis</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Guardrails AI</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Prometheus</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Grafana</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Docker</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">LangGraph</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);margin-bottom:12px;">Key architectural decisions</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>9-layer stack with 3 synchronous agents (orchestrator, guardrails, router) and 2 autonomous background agents (budget, observability) — enforcing strict separation of concerns at enterprise scale</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>LiteLLM abstraction routes across 50+ LLM providers with cost-aware model selection, per-app budget controls, and automatic fallbacks — eliminates vendor lock-in and enables real-time spend governance</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Full observability stack — Prometheus metrics, Grafana dashboards, OpenTelemetry tracing, and immutable audit trails per LLM call — built for enterprise compliance and production-grade reliability</span></li>
+          </ul>
+        </div>
+        <div id="carousel-gateway" class="proj-carousel">
+          <div class="carousel-track">
+            <div class="carousel-slide" style="min-height:612px;padding:10px 14px;"><img src="images/apigateway_architecture.png" alt="AgentGateway Architecture" style="width:100%;max-height:492px;object-fit:contain;border-radius:10px;box-shadow:0 2px 16px rgba(17,24,39,.08);"></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT 1: TraceMind -->
+    <article class="card" style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);overflow:hidden;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
+      <div style="background:var(--bg2,#f8fafc);border-bottom:1px solid var(--line,rgba(17,24,39,.09));padding:26px clamp(20px,3vw,34px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);">System architecture</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;background:color-mix(in srgb,var(--accent,#2563eb) 8%,transparent);color:var(--accent,#2563eb);">Neurosymbolic · Safety-critical</span>
+        </div>
+        <div style="display:flex;align-items:stretch;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Symptom input</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">LLM interpret</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">KG retrieval</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Symbolic safety rules</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Audit-traced output</div></div>
+        </div>
+      </div>
+      <div style="padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px);align-items:start;">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:24px;margin:0;color:var(--ink,#111827);">TraceMind</h3>
+            <a href="https://huggingface.co/spaces/Kirthis/TraceMind" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:5px 11px;border-radius:8px;border:1px solid var(--line,rgba(17,24,39,.14));color:var(--sub,#6b7280);">↗ Demo</a>
+            <a href="https://github.com/kirthistaank/TraceMind" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:5px 11px;border-radius:8px;border:1px solid var(--line,rgba(17,24,39,.14));color:var(--sub,#6b7280);">↗ GitHub</a>
+          </div>
+          <p style="font-size:15px;line-height:1.65;color:var(--sub,#6b7280);margin:0 0 20px;">Neurosymbolic clinical AI agent — combines LLM interpretation with SNOMED/CPG knowledge-graph retrieval and auditable symbolic safety rules. Demonstrates enterprise guardrail &amp; safety design for production AI — explainable, auditable, and aligned with responsible AI principles.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Python</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">LangGraph</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Neo4j</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">PyDatalog</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">SNOMED CT</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Streamlit</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);margin-bottom:12px;">Key architectural decisions</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>LLM + symbolic rules layered to prevent hallucination in safety-critical decisions</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Guardrails, jailbreak &amp; prompt-injection defenses — responsible AI design for high-stakes production environments</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Full audit trail with rule-firing traces — meets enterprise compliance and explainability requirements</span></li>
+          </ul>
+        </div>
+        <div id="carousel-tracemind" class="proj-carousel">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/TraceMind_ui.png" alt="TraceMind UI"></div>
+            <div class="carousel-slide"><img src="images/TraceMind_Disposition.jpg" alt="TraceMind Disposition"></div>
+            <div class="carousel-slide"><img src="images/TraceMind_KG_trace.jpg" alt="TraceMind KG Trace"></div>
+            <div class="carousel-slide"><img src="images/TraceMind_medSafety.jpg" alt="TraceMind Med Safety"></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselMove('tracemind',-1)">&#8592;</button>
+          <button class="carousel-btn carousel-next" onclick="carouselMove('tracemind',1)">&#8594;</button>
+          <div class="carousel-dots" id="dots-tracemind"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT 2: LifeGraph -->
+    <article class="card" style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);overflow:hidden;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
+      <div style="background:var(--bg2,#f8fafc);border-bottom:1px solid var(--line,rgba(17,24,39,.09));padding:26px clamp(20px,3vw,34px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);">System architecture</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;background:color-mix(in srgb,var(--accent,#2563eb) 8%,transparent);color:var(--accent,#2563eb);">Multi-agent · Knowledge Graph</span>
+        </div>
+        <div style="display:flex;align-items:stretch;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Situation input</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">3 specialized agents</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Multi-hop graph traversal</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Verified pathways</div></div>
+        </div>
+      </div>
+      <div style="padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px);align-items:start;">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:24px;margin:0;color:var(--ink,#111827);">LifeGraph</h3>
+            <a href="https://github.com/kirthistaank/LifeGraph" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:5px 11px;border-radius:8px;border:1px solid var(--line,rgba(17,24,39,.14));color:var(--sub,#6b7280);">↗ GitHub</a>
+          </div>
+          <p style="font-size:15px;line-height:1.65;color:var(--sub,#6b7280);margin:0 0 20px;">Multi-agent graph reasoning system with 127 nodes and 246 typed relationships — 3 specialized AI agents collaborate via Neo4j Aura to surface verified pathways. Demonstrates multi-agent orchestration, scalable data pipelines, and backend microservices architecture at enterprise scale.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Neo4j Aura</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Cypher</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Python</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">GraphRAG</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Streamlit</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);margin-bottom:12px;">Key architectural decisions</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>3-agent architecture: Eligibility Navigator, Pathway Advisor, Resource Locator — each with scoped tool access</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>127-node knowledge graph with 7 relationship types — multi-hop traversal unlocks program chains linear search cannot</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>GraphRAG retrieval grounded in verified government data — zero hallucination on factual queries</span></li>
+          </ul>
+        </div>
+        <div id="carousel-lifegraph" class="proj-carousel">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/lifegraph-ui-preview.jpg" alt="LifeGraph UI Preview"></div>
+            <div class="carousel-slide"><img src="images/lifegraph_eligibility_auraagent_response.jpg" alt="LifeGraph Eligibility Agent Response"></div>
+            <div class="carousel-slide"><img src="images/lifegraph_graphschema.jpg" alt="LifeGraph Graph Schema"></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselMove('lifegraph',-1)">&#8592;</button>
+          <button class="carousel-btn carousel-next" onclick="carouselMove('lifegraph',1)">&#8594;</button>
+          <div class="carousel-dots" id="dots-lifegraph"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT 3: GuidePost -->
+    <article class="card" style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);overflow:hidden;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
+      <div style="background:var(--bg2,#f8fafc);border-bottom:1px solid var(--line,rgba(17,24,39,.09));padding:26px clamp(20px,3vw,34px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);">System architecture</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;background:color-mix(in srgb,var(--accent,#2563eb) 8%,transparent);color:var(--accent,#2563eb);">Multimodal · Hybrid RAG · MIDS Capstone</span>
+        </div>
+        <div style="display:flex;align-items:stretch;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Conversation audio</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Whisper + diarization</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Chunk → Embed</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Hybrid retriever</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">LLM coaching</div></div>
+        </div>
+      </div>
+      <div style="padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px);align-items:start;">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:24px;margin:0;color:var(--ink,#111827);">GuidePost</h3>
+            <a href="https://github.com/kirthistaank/MIDS/tree/main/AI-Private-Coach" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:5px 11px;border-radius:8px;border:1px solid var(--line,rgba(17,24,39,.14));color:var(--sub,#6b7280);">↗ GitHub</a>
+          </div>
+          <p style="font-size:15px;line-height:1.65;color:var(--sub,#6b7280);margin:0 0 20px;">Multimodal AI coach that analyzes conversation audio and delivers personalized, evidence-based feedback. UC Berkeley MIDS Capstone — demonstrates full-stack AI pipeline engineering from raw audio ingestion through retrieval-augmented generation to cited, explainable output.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Python</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">LangChain</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Whisper</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">FastAPI</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Pinecone</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Neo4j</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);margin-bottom:12px;">Key architectural decisions</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Multi-signal analysis: language patterns, turn-taking dynamics &amp; vocal delivery in one pipeline</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Hybrid RAG — Pinecone dense + BM25 sparse with cross-encoder reranking for precision retrieval</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Neo4j knowledge graph enables explainable, cited feedback — no black-box outputs</span></li>
+          </ul>
+        </div>
+        <div id="carousel-guidepost" class="proj-carousel">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/guidePost-arch-overview.png" alt="GuidePost Architecture Overview"></div>
+            <div class="carousel-slide"><img src="images/guidePost-multi-signal.jpg" alt="GuidePost Multi-signal Analysis"></div>
+            <div class="carousel-slide"><img src="images/coaching-modes.jpg" alt="Coaching Modes"></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselMove('guidepost',-1)">&#8592;</button>
+          <button class="carousel-btn carousel-next" onclick="carouselMove('guidepost',1)">&#8594;</button>
+          <div class="carousel-dots" id="dots-guidepost"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT 4: ConfidenceOS -->
+    <article class="card" style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);overflow:hidden;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
+      <div style="background:var(--bg2,#f8fafc);border-bottom:1px solid var(--line,rgba(17,24,39,.09));padding:26px clamp(20px,3vw,34px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);">System architecture</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;background:color-mix(in srgb,var(--accent,#2563eb) 8%,transparent);color:var(--accent,#2563eb);">Agentic · Local · Zero-cost</span>
+        </div>
+        <div style="display:flex;align-items:stretch;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">User input</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">LangGraph agentic loop</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Hybrid RAG</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Coached response</div></div>
+        </div>
+      </div>
+      <div style="padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px);align-items:start;">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:24px;margin:0;color:var(--ink,#111827);">ConfidenceOS</h3>
+            <a href="https://github.com/kirthistaank/MIDS/tree/main/ConfidenceOS" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:5px 11px;border-radius:8px;border:1px solid var(--line,rgba(17,24,39,.14));color:var(--sub,#6b7280);">↗ GitHub</a>
+          </div>
+          <p style="font-size:15px;line-height:1.65;color:var(--sub,#6b7280);margin:0 0 20px;">Full-stack agentic AI interview coach with LangGraph orchestration, hybrid RAG (Pinecone + BM25), and Neo4j knowledge graph. Fully local, zero API cost — demonstrates end-to-end agentic system design with tool calling, memory management, and emotion detection.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Python</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">LangGraph</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Pinecone</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Neo4j</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">FastAPI</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Ollama</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);margin-bottom:12px;">Key architectural decisions</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>LangGraph agentic loop with tool calling, persistent memory &amp; real-time emotion detection</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Hybrid RAG — Pinecone dense + BM25 sparse with cross-encoder reranking</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Modular architecture: prompts, tools, memory &amp; emotion layers fully decoupled for testability</span></li>
+          </ul>
+        </div>
+        <div id="carousel-confidenceos" class="proj-carousel">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/confidenceOS-arch-overview.png" alt="ConfidenceOS Architecture Overview"></div>
+            <div class="carousel-slide"><img src="images/confidenceOS-rag-pipeline.png" alt="ConfidenceOS RAG Pipeline"></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselMove('confidenceos',-1)">&#8592;</button>
+          <button class="carousel-btn carousel-next" onclick="carouselMove('confidenceos',1)">&#8594;</button>
+          <div class="carousel-dots" id="dots-confidenceos"></div>
+        </div>
+      </div>
+    </article>
+
   </div>
 </section>
 
-  <!-- SKILLS -->
-  <section id="skills-section">
-    <p class="section-label">Technical Skills</p>
-    <div class="skills-grid">
-      <div class="skill-block">
-        <p class="skill-block-title">AI &amp; ML</p>
-        <div class="skill-list">
-          <span class="skill-chip">LangGraph</span>
-          <span class="skill-chip">LangChain</span>
-          <span class="skill-chip">PyTorch</span>
-          <span class="skill-chip">TensorFlow</span>
-          <span class="skill-chip">Hugging Face</span>
-          <span class="skill-chip">OpenAI APIs</span>
-          <span class="skill-chip">FAISS</span>
-          <span class="skill-chip">Pinecone</span>
-          <span class="skill-chip">Neo4j</span>
-          <span class="skill-chip">Vertex AI</span>
-          <span class="skill-chip">Dataiku</span>
-          <span class="skill-chip">Databricks</span>
-        </div>
+<!-- IMPACT DASHBOARD -->
+<section id="impact" style="background:var(--bg2,#f8fafc);border-top:1px solid var(--line,rgba(17,24,39,.09));border-bottom:1px solid var(--line,rgba(17,24,39,.09));">
+  <div style="max-width:1080px;margin:0 auto;padding:clamp(48px,6vw,90px) clamp(20px,6vw,72px);">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent,#2563eb);">Measured impact</span>
+    <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.6vw,42px);letter-spacing:-0.02em;margin:10px 0 40px;color:var(--ink,#111827);">Outcomes in production</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+      <div class="card" style="border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);padding:26px;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Space Grotesk';font-weight:700;font-size:34px;letter-spacing:-0.02em;color:var(--accent,#2563eb);">−20%</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub,#6b7280);">analysis time</span></div>
+        <p style="font-size:14px;line-height:1.55;color:var(--ink,#111827);margin:0;">Containerized ML apps on GCP for early failure detection</p>
       </div>
-      <div class="skill-block">
-        <p class="skill-block-title">Cloud &amp; Big Data</p>
-        <div class="skill-list">
-          <span class="skill-chip">GCP</span>
-          <span class="skill-chip">AWS</span>
-          <span class="skill-chip">BigQuery</span>
-          <span class="skill-chip">Spark</span>
-          <span class="skill-chip">Kafka</span>
-          <span class="skill-chip">Hive</span>
-          <span class="skill-chip">Dataflow</span>
-          <span class="skill-chip">Dataproc</span>
-          <span class="skill-chip">Redshift</span>
-        </div>
+      <div class="card" style="border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);padding:26px;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Space Grotesk';font-weight:700;font-size:34px;letter-spacing:-0.02em;color:var(--accent,#2563eb);">−40%</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub,#6b7280);">dev effort</span></div>
+        <p style="font-size:14px;line-height:1.55;color:var(--ink,#111827);margin:0;">Petabyte-scale automated data pipelines across distributed systems</p>
       </div>
-      <div class="skill-block">
-        <p class="skill-block-title">Infra &amp; APIs</p>
-        <div class="skill-list">
-          <span class="skill-chip">Kubernetes</span>
-          <span class="skill-chip">Docker</span>
-          <span class="skill-chip">Airflow</span>
-          <span class="skill-chip">Terraform</span>
-          <span class="skill-chip">FastAPI</span>
-          <span class="skill-chip">Flask</span>
-          <span class="skill-chip">Plotly Dash</span>
-          <span class="skill-chip">Looker</span>
-        </div>
+      <div class="card" style="border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);padding:26px;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Space Grotesk';font-weight:700;font-size:34px;letter-spacing:-0.02em;color:var(--accent,#2563eb);">−50%</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub,#6b7280);">labeling time</span></div>
+        <p style="font-size:14px;line-height:1.55;color:var(--ink,#111827);margin:0;">Image segmentation pipeline with Mask R-CNN — production ML at scale</p>
+      </div>
+      <div class="card" style="border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);padding:26px;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Space Grotesk';font-weight:700;font-size:34px;letter-spacing:-0.02em;color:var(--accent,#2563eb);">−30%</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub,#6b7280);">manual engineering</span></div>
+        <p style="font-size:14px;line-height:1.55;color:var(--ink,#111827);margin:0;">Correlation analysis framework in PySpark — reduced manual data engineering</p>
+      </div>
+      <div class="card" style="border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);padding:26px;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Space Grotesk';font-weight:700;font-size:34px;letter-spacing:-0.02em;color:var(--accent,#2563eb);">Predictive</span></div>
+        <p style="font-size:14px;line-height:1.55;color:var(--ink,#111827);margin:0;">Centralized log analytics with ML-driven dashboards — proactive hardware failure detection</p>
+      </div>
+      <div class="card" style="border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);padding:26px;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Space Grotesk';font-weight:700;font-size:34px;letter-spacing:-0.02em;color:var(--accent,#2563eb);">Faster</span></div>
+        <p style="font-size:14px;line-height:1.55;color:var(--ink,#111827);margin:0;">LLM-powered onboarding chatbot — Hugging Face + FAISS knowledge retrieval</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- IMPACT -->
-  <section id="impact-section">
-    <p class="section-label">Industry Impact</p>
-    <table class="impact-table">
-      <tr>
-        <td>Containerized ML apps on GCP — early failure detection</td>
-        <td>↓ 20% analysis time</td>
-      </tr>
-      <tr>
-        <td>Petabyte-scale automated data pipelines</td>
-        <td>↓ 40% dev effort</td>
-      </tr>
-      <tr>
-        <td>Centralized log analytics with ML-driven dashboards</td>
-        <td>Predictive failure detection</td>
-      </tr>
-      <tr>
-        <td>Image segmentation with Mask R-CNN</td>
-        <td>↓ 50% labeling time</td>
-      </tr>
-      <tr>
-        <td>Correlation analysis framework in PySpark</td>
-        <td>↓ 30% manual engineering</td>
-      </tr>
-      <tr>
-        <td>LLM-powered onboarding chatbot - Hugging Face + FAISS</td>
-        <td>Accelerated onboarding</td>
-      </tr>
-    </table>
-  </section>
-  <!-- RESEARCH -->
-  <section id="research-section">
-    <p class="section-label">Research &amp; Academic Work</p>
-    <div class="research-list">
+<!-- WRITING -->
+<section id="writing" style="max-width:1080px;margin:0 auto;padding:clamp(48px,6vw,90px) clamp(20px,6vw,72px);">
+  <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent,#2563eb);">Writing</span>
+  <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.6vw,42px);letter-spacing:-0.02em;margin:10px 0 40px;color:var(--ink,#111827);">Notes on building AI systems</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;">
 
-      <div class="paper-card">
-        <div class="paper-top">
-          <h3 class="paper-title">Zero-Shot vs. Fine-Tuned: A Systematic Evaluation of Encoder, Decoder, and LLM Architectures for Clinical Text Classification</h3>
-          <a href="https://github.com/kirthistaank/MIDS/blob/main/technicalpapers/Zero-Shot%20vs.%20Fine-Tuned.pdf" class="paper-link placeholder">Technical Whitepaper ↗</a>
-        </div>
-        <div class="paper-tags">
-          <span class="paper-tag course">UC Berkeley MIDS</span>
-          <span class="paper-tag course">NLP Fundamentals</span>
-          <span class="paper-tag">Clinical NLP</span>
-          <span class="paper-tag">Transformers</span>
-          <span class="paper-tag">LLM Evaluation</span>
-          <span class="paper-tag">PubMedBERT</span>
-          <span class="paper-tag">Mistral-7B</span>
-          <span class="paper-tag">LoRA</span>
-          <span class="paper-tag">GPT-4</span>
-        </div>
-        <details class="paper-abstract">
-            <summary>Abstract</summary>
-            <p>This study presents a systematic comparison of zero-shot large language models (LLMs) versus fine-tuned transformer architectures for single-label clinical text classification across three real-world, imbalanced healthcare datasets. We evaluate three architectural paradigms: encoder-based (PubMedBERT), encoder-decoder (T5-base), and decoder-only LLM (Mistral-7B with LoRA fine-tuning), against a zero-shot GPT-4 baseline using structured prompt engineering.</p>
-            <p style="margin-top:10px;">Our results demonstrate that domain-specific fine-tuned encoders (PubMedBERT) achieve superior efficiency-performance trade-offs (F1 0.63–0.97), while zero-shot LLMs provide rapid deployment capabilities without labeled data (F1 0.48–0.71). We introduce a reproducible zero-shot evaluation framework with optimized system prompts, constraint-based output formatting, and statistical significance testing. This work provides actionable guidance for model selection in resource-constrained clinical NLP deployments, balancing accuracy, latency, and computational cost.</p>
-        </details>
-      </div>
+    <a href="https://medium.com/@kirthis/the-missing-layer-in-enterprise-ai-demystifying-the-ai-gateway-c7432a8980c5" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · Enterprise AI</span>
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">The Missing Layer in Enterprise AI: Demystifying the AI Gateway</h3>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">The infrastructure layer bridging enterprise systems with LLMs — managing costs, compliance, and safe production deployments at scale. Directly relevant to any enterprise AI platform engineering role.</p>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
+    </a>
 
-    </div>
-  </section>
-<!-- BOOK A CALL -->
-<section id="contact-section">
-  <p class="section-label">Book a Call</p>
-  <div class="booking-card">
+    <a href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · AI Architecture</span>
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">The Bridge Between Intuition and Logic: An Introduction to Neurosymbolic AI</h3>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">How combining neural networks with symbolic reasoning creates more explainable, trustworthy, human-like AI — the theoretical foundation behind TraceMind.</p>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
+    </a>
 
-    <div class="booking-top">
-      <div>
-        <h3>Let's Talk</h3>
-        <p>Open to discussing AI engineering roles, collaborations, or a quick chat about agentic AI, RAG systems, and production ML.</p>
-      </div>
-      <div class="booking-pill">
-        <span class="booking-pill-dot"></span>
-        Open to roles
-      </div>
-    </div>
+    <a href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · LifeGraph series · Graph AI</span>
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">Why Graphs Solve Social Program Navigation (Part 1 of 3)</h3>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">How graph reasoning beats linear search — the architecture decisions behind LifeGraph's multi-hop knowledge graph traversal.</p>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
+    </a>
 
-    <div class="booking-info-grid">
-      <div class="booking-info-item">
-        <div class="booking-info-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div>
-          <p class="booking-info-label">Duration</p>
-          <p class="booking-info-value">30 minutes</p>
-        </div>
-      </div>
-      <div class="booking-info-item">
-        <div class="booking-info-icon" style="background:#fff; border-color:#e0e0e0; padding:2px;">
-          <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-          </svg>
-        </div>
-        <div>
-          <p class="booking-info-label">Format</p>
-          <p class="booking-info-value">Google Meet</p>
-        </div>
-      </div>
-      <div class="booking-info-item">
-        <div class="booking-info-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <div>
-          <p class="booking-info-label">Timezone</p>
-          <p class="booking-info-value">Your local time</p>
-        </div>
-      </div>
-    </div>
+    <a href="https://medium.com/@kirthis/the-hybrid-ai-strategy-balancing-geminis-magic-with-local-nlp-models-5214de732363" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · LLM Strategy</span>
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">The Hybrid AI Strategy: Balancing Gemini's Magic with Local NLP Models</h3>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">Comparing cloud LLMs with local NLP models — a practical guide to privacy, cost, and latency trade-offs at enterprise scale.</p>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
+    </a>
 
-    <div class="booking-actions">
-      <a href="https://cal.com/kirthis/quick-chat" target="_blank" class="booking-btn-primary">
-        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Schedule a call
-      </a>
-      <a href="https://www.linkedin.com/in/kirthishanbhag/" target="_blank" class="booking-btn-secondary">
-        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        Connect on LinkedIn
-      </a>
-    </div>
+    <a href="https://medium.com/@kirthis/growth-isnt-a-straight-line-my-journey-through-uc-berkeley-s-mids-and-the-art-of-the-pivot-9beb53e79903" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · Career</span>
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">Growth Isn't a Straight Line: My Journey Through UC Berkeley's MIDS</h3>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">Reflections on career transitions, continuous learning, and embracing uncertainty on the path to AI engineering.</p>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
+    </a>
+
+    <a href="https://medium.com/@kirthis/from-uncertainty-to-opportunity-what-wids-mentorship-did-for-my-career-7a6ad0410e57" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · Leadership</span>
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">From Uncertainty to Opportunity: What WIDS Mentorship Did for My Career</h3>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">How strategic mentorship and community support transformed my trajectory in data science and AI engineering.</p>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
+    </a>
 
   </div>
 </section>
-  <!-- CONNECT -->
-  <section>
-    <p class="section-label">Let's Connect</p>
-    <div class="connect-row">
-      <a href="https://www.linkedin.com/in/kirthishanbhag/" class="connect-btn" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/kirthistaank/MIDS" class="connect-btn" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-        GitHub
-      </a>
-      <a href="mailto:kirthi.genai@gmail.com" class="connect-btn">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        Email
-      </a>
-    </div>
-  </section>
 
-  <footer>
-    <p>Open to Senior AI Engineer &nbsp;·&nbsp;Senior ML Engineer  &nbsp;·&nbsp; Data Scientist roles</p>
-    <p>UC Berkeley MIDS  · 15+ years in tech · 7+ years in dedicated ML/AI</p>
-  </footer>
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg2,#f8fafc);border-top:1px solid var(--line,rgba(17,24,39,.09));border-bottom:1px solid var(--line,rgba(17,24,39,.09));">
+  <div style="max-width:1080px;margin:0 auto;padding:clamp(48px,6vw,90px) clamp(20px,6vw,72px);">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent,#2563eb);">Stack</span>
+    <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.6vw,42px);letter-spacing:-0.02em;margin:10px 0 40px;color:var(--ink,#111827);">Technical toolkit</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+
+      <div style="padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);">
+        <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:16px;margin:0 0 16px;color:var(--ink,#111827);">Agentic AI &amp; LLM Systems</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">LangGraph</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">LangChain</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">OpenAI APIs</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Prompt Engineering</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Guardrails</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Ollama</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">GraphRAG</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">FAISS</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Pinecone</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">LiteLLM</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Whisper</span>
+        </div>
+      </div>
+
+      <div style="padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);">
+        <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:16px;margin:0 0 16px;color:var(--ink,#111827);">ML &amp; Knowledge Graph</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Neo4j AuraDB</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">PyTorch</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">TensorFlow</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Hugging Face</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Cypher</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Vertex AI</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Databricks</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">MLflow</span>
+        </div>
+      </div>
+
+      <div style="padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);">
+        <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:16px;margin:0 0 16px;color:var(--ink,#111827);">Cloud, Infra &amp; Backend</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">GCP</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">AWS</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Kubernetes</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Docker</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">FastAPI</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Kafka</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Spark</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Airflow</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Terraform</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">BigQuery</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Redis</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">PostgreSQL</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Prometheus</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Grafana</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Streamlit</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" style="max-width:1080px;margin:0 auto;padding:clamp(48px,6vw,90px) clamp(20px,6vw,72px);">
+  <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent,#2563eb);">Research</span>
+  <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.6vw,42px);letter-spacing:-0.02em;margin:10px 0 32px;color:var(--ink,#111827);">Academic work</h2>
+  <div style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);padding:clamp(28px,3.5vw,48px);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);">UC Berkeley MIDS · Whitepaper</span>
+    <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(20px,2.4vw,30px);line-height:1.25;letter-spacing:-0.01em;margin:14px 0 20px;color:var(--ink,#111827);max-width:900px;">Zero-Shot vs. Fine-Tuned: A Systematic Evaluation of Encoder, Decoder, and LLM Architectures for Clinical Text Classification</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:26px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border-radius:6px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">UC Berkeley MIDS</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border-radius:6px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Clinical NLP</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border-radius:6px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Transformers</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border-radius:6px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">LLM Evaluation</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border-radius:6px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">PubMedBERT</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border-radius:6px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Mistral-7B LoRA</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 10px;border-radius:6px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">GPT-4</span>
+    </div>
+    <p style="font-size:15px;line-height:1.75;color:var(--sub,#6b7280);margin:0 0 16px;max-width:860px;">A systematic comparison of zero-shot LLMs versus fine-tuned transformer architectures for single-label clinical text classification across three real-world, imbalanced healthcare datasets — evaluating encoder-based (PubMedBERT), encoder-decoder (T5-base), and decoder-only LLM (Mistral-7B + LoRA) paradigms against a zero-shot GPT-4 baseline.</p>
+    <p style="font-size:15px;line-height:1.75;color:var(--sub,#6b7280);margin:0 0 30px;max-width:860px;">Results show domain-specific fine-tuned encoders achieve superior efficiency-performance trade-offs (F1 0.63–0.97), while zero-shot LLMs enable rapid deployment without labeled data (F1 0.48–0.71). Introduces a reproducible zero-shot evaluation framework with optimized system prompts, constraint-based output formatting, and statistical significance testing — directly applicable to enterprise LLM evaluation at scale.</p>
+    <a href="https://github.com/kirthistaank/MIDS/blob/main/technicalpapers/Zero-Shot%20vs.%20Fine-Tuned.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:11px;font-weight:600;font-size:14px;color:#fff;background:var(--accent,#2563eb);" onmouseover="this.style.filter='brightness(1.06)';this.style.transform='translateY(-2px)'" onmouseout="this.style.filter='';this.style.transform=''">Read the whitepaper ↗</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width:1080px;margin:0 auto;padding:clamp(48px,6vw,90px) clamp(20px,6vw,72px);">
+  <div style="border-radius:24px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);padding:clamp(40px,5vw,80px);text-align:center;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent,#2563eb);">Let's talk</span>
+    <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4.5vw,54px);letter-spacing:-0.025em;margin:14px 0 18px;color:var(--ink,#111827);">Let's build intelligent systems at scale.</h2>
+    <p style="font-size:16px;line-height:1.7;color:var(--sub,#6b7280);max-width:560px;margin:0 auto 20px;">Open to Principal AI Engineer roles — enterprise-grade agentic systems, LLM platform architecture, and knowledge graph-powered reasoning at scale.</p>
+    <div style="display:inline-flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--sub,#6b7280);margin-bottom:32px;">
+      <span>30 min</span><span style="opacity:.4;">·</span><span>Google Meet</span><span style="opacity:.4;">·</span><span>Your local time</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:13px;justify-content:center;">
+      <a href="https://cal.com/kirthis/quick-chat" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:15px 30px;border-radius:11px;font-weight:600;font-size:15px;color:#fff;background:var(--accent,#2563eb);box-shadow:0 8px 24px color-mix(in srgb,var(--accent,#2563eb) 26%,transparent);" onmouseover="this.style.filter='brightness(1.06)';this.style.transform='translateY(-2px)'" onmouseout="this.style.filter='';this.style.transform=''">Schedule a call →</a>
+      <a href="https://www.linkedin.com/in/kirthishanbhag/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:15px 30px;border-radius:11px;font-weight:500;font-size:15px;color:var(--ink,#111827);border:1px solid var(--line,rgba(17,24,39,.14));background:var(--bg,#fff);" onmouseover="this.style.borderColor='var(--accent,#2563eb)';this.style.color='var(--accent,#2563eb)'" onmouseout="this.style.borderColor='var(--line,rgba(17,24,39,.14))';this.style.color='var(--ink,#111827)'">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="max-width:1080px;margin:0 auto;padding:28px clamp(20px,6vw,72px) 50px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--line,rgba(17,24,39,.09));">
+  <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub,#6b7280);">Kirthi Shanbhag · Principal AI Engineer · UC Berkeley MIDS · 15+ yrs in tech</span>
+  <div style="display:flex;gap:20px;font-family:'JetBrains Mono',monospace;font-size:12.5px;">
+    <a href="https://www.linkedin.com/in/kirthishanbhag/" target="_blank" style="color:var(--sub,#6b7280);" onmouseover="this.style.color='var(--ink,#111827)'" onmouseout="this.style.color='var(--sub,#6b7280)'">LinkedIn</a>
+    <a href="https://github.com/kirthistaank" target="_blank" style="color:var(--sub,#6b7280);" onmouseover="this.style.color='var(--ink,#111827)'" onmouseout="this.style.color='var(--sub,#6b7280)'">GitHub</a>
+    <a href="mailto:kirthi.genai@gmail.com" style="color:var(--sub,#6b7280);" onmouseover="this.style.color='var(--ink,#111827)'" onmouseout="this.style.color='var(--sub,#6b7280)'">Email</a>
+  </div>
+</footer>
 
 </div>
 
+<style>
+.card { transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+.card:hover { border-color: color-mix(in srgb, #2563eb 45%, rgba(17,24,39,.1)); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(17,24,39,.08); }
+.proj-carousel { position:relative; overflow:hidden; border-radius:12px; border:1px solid var(--line,rgba(17,24,39,.1)); background:var(--bg,#fff); }
+.carousel-track { display:flex; transition:transform .35s cubic-bezier(.4,0,.2,1); }
+.carousel-slide { min-width:100%; display:flex; justify-content:center; align-items:center; padding:20px 56px; min-height:260px; }
+.carousel-slide img { max-height:240px; max-width:100%; object-fit:contain; border-radius:10px; box-shadow:0 2px 16px rgba(17,24,39,.08); }
+.carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:var(--bg,#fff); border:1px solid var(--line,rgba(17,24,39,.12)); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:15px; color:var(--sub,#6b7280); z-index:2; transition:all .2s; line-height:1; }
+.carousel-btn:hover { border-color:var(--accent,#2563eb); color:var(--accent,#2563eb); box-shadow:0 2px 8px rgba(37,99,235,.15); }
+.carousel-prev { left:12px; }
+.carousel-next { right:12px; }
+.carousel-dots { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px; }
+.carousel-dot { width:6px; height:6px; border-radius:50%; background:rgba(17,24,39,.18); cursor:pointer; transition:background .2s; border:none; padding:0; }
+.carousel-dot.active { background:var(--accent,#2563eb); }
+</style>
+
 <script>
-  // Carousel image sets — UI/Demo first, then architecture diagrams
-  const carouselImages = {
-    confidenceOS: [
-      { src: 'images/coaching-modes.jpg', type: 'image', label: 'UI Preview' },
-      { src: 'images/confidenceOS-arch-overview.png', type: 'image', label: 'System Architecture' },
-      { src: 'images/confidenceOS-rag-pipeline.png', type: 'image', label: 'RAG Pipeline' }
-    ],
-    TraceMind: [
-      { src: 'images/TraceMind_ui.png', type: 'image', label: 'UI Preview' },
-      { src: 'images/TraceMind_Disposition.jpg', type: 'image', label: 'Disposition'},
-      { src: 'images/TraceMind_KG_trace.jpg', type: 'image', label: 'KG Trace' },
-      { src: 'images/TraceMind_medSafety.jpg', type: 'image', label: 'Med Safety' },
-      
-    ],
-    LifeGraph: [
-      { src: 'images/lifegraph-ui-preview.jpg', type: 'image', label: 'Web Interface' },
-      { src: 'images/lifegraph_eligibility_auraagent_response.jpg', type: 'image', label: 'Aura Agent Visualization' },
-      { src: 'images/lifegraph_graphschema.jpg', type: 'image', label: 'Knowledge Graph Schema' }
-    ],
-    guidePost: [
-      { src: 'videos/guidepost-demo.mp4', type: 'video', label: 'Demo Video' },
-      { src: 'images/guidePost-arch-overview.png', type: 'image', label: 'System Architecture' },
-      { src: 'images/guidePost-multi-signal.jpg', type: 'image', label: 'Multi-Signal Analysis' }
-    ],
-    zeroShotFineTuned: [
-      { src: 'images/zeroshotvsfinetuning.png', type: 'image', label: 'Comparison Results' },
-      { src: 'images/zeroshot-architecture.png', type: 'image', label: 'Zero-Shot Pipeline' },
-      { src: 'images/finetuned-architecture.png', type: 'image', label: 'Fine-Tuned Pipeline' }
-    ]
-  };
-
-  function loadScreenshot(input) {
-    const file = input.files[0];
-    if (!file) return;
-    const zone = input.closest('.screenshot-zone');
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      zone.querySelectorAll('.screenshot-icon, .screenshot-label, .screenshot-hint').forEach(el => el.remove());
-      const img = document.createElement('img');
-      img.src = e.target.result;
-      img.alt = 'Project screenshot';
-      zone.appendChild(img);
-    };
-    reader.readAsDataURL(file);
+const _carousels = {};
+function initCarousel(id, count) {
+  _carousels[id] = 0;
+  if (count < 2) return;
+  const dotsEl = document.getElementById('dots-' + id);
+  for (let i = 0; i < count; i++) {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.onclick = () => _goCarousel(id, i, count);
+    dotsEl.appendChild(d);
   }
+}
+function _goCarousel(id, n, count) {
+  _carousels[id] = n;
+  document.querySelector('#carousel-' + id + ' .carousel-track').style.transform = 'translateX(-' + (n * 100) + '%)';
+  document.querySelectorAll('#dots-' + id + ' .carousel-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+}
+function carouselMove(id, dir) {
+  const count = document.querySelectorAll('#carousel-' + id + ' .carousel-slide').length;
+  _goCarousel(id, ((_carousels[id] || 0) + dir + count) % count, count);
+}
+window.addEventListener('DOMContentLoaded', () => {
+  initCarousel('tracemind', 4);
+  initCarousel('lifegraph', 3);
+  initCarousel('guidepost', 3);
+  initCarousel('confidenceos', 2);
+});
 
-  function openImageModal(src) {
-    const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    modalImage.src = src;
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+let isDark = false;
+
+function toggleTheme() {
+  isDark = !isDark;
+  const root = document.getElementById('root');
+  const dot = document.getElementById('themeDot');
+  const label = document.getElementById('themeLabel');
+  if (isDark) {
+    root.classList.add('dark');
+    dot.style.background = 'transparent';
+    label.textContent = 'Light';
+  } else {
+    root.classList.remove('dark');
+    dot.style.background = '#111827';
+    label.textContent = 'Dark';
   }
-
-  function closeImageModal() {
-    const modal = document.getElementById('imageModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-
-  function prevArch(btn) {
-    const zone = btn.closest('.screenshot-zone');
-    const carouselId = zone.getAttribute('data-carousel');
-    let currentIndex = parseInt(zone.querySelector('.carousel-current').textContent) - 1;
-    const items = carouselImages[carouselId];
-    if (!items) return;
-
-    currentIndex = (currentIndex - 1 + items.length) % items.length;
-    updateCarouselDisplay(zone, carouselId, currentIndex);
-  }
-
-  function nextArch(btn) {
-    const zone = btn.closest('.screenshot-zone');
-    const carouselId = zone.getAttribute('data-carousel');
-    let currentIndex = parseInt(zone.querySelector('.carousel-current').textContent) - 1;
-    const items = carouselImages[carouselId];
-    if (!items) return;
-
-    currentIndex = (currentIndex + 1) % items.length;
-    updateCarouselDisplay(zone, carouselId, currentIndex);
-  }
-
-  function updateCarouselDisplay(zone, carouselId, index) {
-    const items = carouselImages[carouselId];
-    const item = items[index];
-    const img = zone.querySelector('.carousel-img');
-    const video = zone.querySelector('.carousel-video');
-
-    if (item.type === 'video') {
-      if (img) img.style.display = 'none';
-      if (video) {
-        video.src = item.src;
-        video.style.display = 'block';
-      }
-    } else {
-      if (video) video.style.display = 'none';
-      if (img) {
-        img.src = item.src;
-        img.style.display = 'block';
-        // Add click handler for image zoom
-        img.style.cursor = 'pointer';
-        img.onclick = function(e) {
-          e.stopPropagation();
-          openImageModal(item.src);
-        };
-      }
-    }
-
-    zone.querySelector('.carousel-current').textContent = index + 1;
-    // Don't disable buttons - allow infinite looping
-  }
-
-  // Add click handlers to screenshot zones with images
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize carousel
-    document.querySelectorAll('[data-carousel]').forEach(zone => {
-      const carouselId = zone.getAttribute('data-carousel');
-      const items = carouselImages[carouselId];
-
-      // Initialize with first item
-      if (items && items.length > 0) {
-        const firstItem = items[0];
-        const video = zone.querySelector('.carousel-video');
-        const img = zone.querySelector('.carousel-img');
-
-        if (firstItem.type === 'video' && video) {
-          video.src = firstItem.src;
-          video.style.display = 'block';
-          if (img) img.style.display = 'none';
-        } else if (img) {
-          img.src = firstItem.src;
-          img.style.display = 'block';
-          img.style.cursor = 'pointer';
-          img.onclick = function(e) {
-            e.stopPropagation();
-            openImageModal(firstItem.src);
-          };
-          if (video) video.style.display = 'none';
-        }
-      }
-    });
-
-    // Handle non-carousel screenshots
-    const screenshotZones = document.querySelectorAll('.screenshot-zone:not([data-carousel])');
-    screenshotZones.forEach(zone => {
-      const img = zone.querySelector('img[src]');
-      if (img && img.src) {
-        zone.addEventListener('click', function(e) {
-          e.stopPropagation();
-          openImageModal(img.src);
-        });
-        zone.style.cursor = 'pointer';
-      }
-    });
-  });
-
-  // Close modal when clicking outside the image
-  document.getElementById('imageModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeImageModal();
-    }
-  });
-
-  // Close modal on Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeImageModal();
-    }
-  });
-
-  // ── CAROUSEL FUNCTIONALITY ──
-  let carouselIndex = 0;
-  const articlesPerView = 2;
-  const totalArticles = 8;
-  const carousel = document.getElementById('writingCarousel');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-
-  function scrollCarousel(direction) {
-    carouselIndex += direction;
-
-    // Clamp index
-    if (carouselIndex < 0) carouselIndex = 0;
-    if (carouselIndex > totalArticles - articlesPerView) carouselIndex = totalArticles - articlesPerView;
-
-    // Calculate transform
-    const cardWidth = carousel.querySelector('.writing-card').offsetWidth;
-    const gap = 16;
-    const translateX = -carouselIndex * (cardWidth + gap);
-    carousel.style.transform = `translateX(${translateX}px)`;
-
-    // Update buttons
-    prevBtn.disabled = carouselIndex === 0;
-    nextBtn.disabled = carouselIndex === totalArticles - articlesPerView;
-
-    // Update counter
-    document.getElementById('carouselCounter').textContent =
-      `Articles ${carouselIndex + 1}-${Math.min(carouselIndex + articlesPerView, totalArticles)} of ${totalArticles}`;
-  }
-
-  // Initialize carousel on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    scrollCarousel(0);
-  });
+}
 </script>
+
 </body>
 </html>
