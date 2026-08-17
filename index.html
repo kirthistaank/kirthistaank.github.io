@@ -578,6 +578,15 @@ a:hover { color: var(--accent, #2563eb); }
 .carousel-dots { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px; }
 .carousel-dot { width:6px; height:6px; border-radius:50%; background:rgba(17,24,39,.18); cursor:pointer; transition:background .2s; border:none; padding:0; }
 .carousel-dot.active { background:var(--accent,#2563eb); }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.88); align-items:center; justify-content:center; cursor:zoom-out; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:90vw; max-height:90vh; object-fit:contain; border-radius:10px; box-shadow:0 8px 60px rgba(0,0,0,.7); cursor:default; animation:lb-in .2s ease; }
+@keyframes lb-in { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
+#lightbox-close { position:fixed; top:18px; right:22px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); border-radius:50%; width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff; font-size:20px; line-height:1; transition:background .15s; }
+#lightbox-close:hover { background:rgba(255,255,255,.22); }
+.carousel-slide img { cursor:zoom-in; }
 </style>
 
 <script>
@@ -608,6 +617,21 @@ window.addEventListener('DOMContentLoaded', () => {
   initCarousel('lifegraph', 3);
   initCarousel('guidepost', 3);
   initCarousel('confidenceos', 2);
+
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.carousel-slide img').forEach(img => {
+    img.addEventListener('click', e => {
+      e.stopPropagation();
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  document.getElementById('lightbox-close').addEventListener('click', () => lb.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 });
 
 let isDark = false;
@@ -628,6 +652,11 @@ function toggleTheme() {
   }
 }
 </script>
+
+<div id="lightbox">
+  <button id="lightbox-close" aria-label="Close">&#x2715;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
 </body>
 </html>
