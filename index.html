@@ -670,7 +670,8 @@ function carouselMove(id, dir) {
   _goCarousel(id, ((_carousels[id] || 0) + dir + count) % count, count);
 }
 window.addEventListener('DOMContentLoaded', () => {
-  initCarousel('tracemind', 4);
+  initCarousel('tracemind', 5);
+  initCarousel('techlens', 6);
   initCarousel('lifegraph', 3);
   initCarousel('guidepost', 3);
   initCarousel('confidenceos', 2);
