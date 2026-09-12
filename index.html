@@ -324,7 +324,58 @@ a:hover { color: var(--accent, #2563eb); }
       </div>
     </article>
 
-    <!-- PROJECT 4: ConfidenceOS -->
+    <!-- PROJECT 4: AnchorAI -->
+    <article class="card" style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);overflow:hidden;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
+      <div style="background:var(--bg2,#f8fafc);border-bottom:1px solid var(--line,rgba(17,24,39,.09));padding:26px clamp(20px,3vw,34px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);">System architecture</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;background:color-mix(in srgb,var(--accent,#2563eb) 8%,transparent);color:var(--accent,#2563eb);">Agentic · CBT · Privacy-First</span>
+        </div>
+        <div style="display:flex;align-items:stretch;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">User message</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Guardrails + PII mask</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">LangGraph agent (6-node)</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Neo4j + ChromaDB retrieval</div><span style="color:var(--accent,#2563eb);font-size:15px;">→</span></div>
+          <div style="display:flex;align-items:center;"><div style="display:flex;align-items:center;padding:10px 14px;border-radius:10px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink,#111827);white-space:nowrap;">Streaming CBT response</div></div>
+        </div>
+      </div>
+      <div style="padding:clamp(24px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px);align-items:start;">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <h3 style="font-family:'Space Grotesk';font-weight:700;font-size:24px;margin:0;color:var(--ink,#111827);">AnchorAI</h3>
+          </div>
+          <p style="font-size:15px;line-height:1.65;color:var(--sub,#6b7280);margin:0 0 20px;">AI-powered mental wellness agent that guides users through journaling, mood tracking, and CBT-based cognitive reframing. A 6-node LangGraph state machine orchestrates across four databases — detecting 40 cognitive distortions and routing to 60+ personalized coping strategies — while running fully local via Ollama for zero cloud dependency.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Python</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">React 18</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">FastAPI</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">LangGraph</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Neo4j</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">ChromaDB</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">PostgreSQL</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:7px;background:var(--bg2,#f8fafc);border:1px solid var(--line,rgba(17,24,39,.1));color:var(--sub,#6b7280);">Ollama</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub,#6b7280);margin-bottom:12px;">Key architectural decisions</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>6-node LangGraph state machine (Observe → Classify → Reason → Select → Execute → Respond) aligns AI flow with evidence-based CBT therapy structure</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>4-database architecture: PostgreSQL (sessions/moods), Neo4j (CBT knowledge graph), ChromaDB (semantic journal search), PostgreSQL AI memories — each chosen for its data shape</span></li>
+            <li style="display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink,#111827);"><span style="color:var(--accent,#2563eb);flex-shrink:0;font-weight:700;">·</span><span>Multi-layer safety pipeline: prompt injection detection, PII masking, and crisis signal routing with hotline resources — runs fully offline via Ollama with no cloud dependency</span></li>
+          </ul>
+        </div>
+        <div id="carousel-anchorai" class="proj-carousel">
+          <div class="carousel-track">
+            <div class="carousel-slide" style="min-height:480px;background:var(--bg2,#f8fafc);"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--sub,#6b7280);">[ Architecture diagram — coming soon ]</span></div>
+            <div class="carousel-slide" style="min-height:480px;background:var(--bg2,#f8fafc);"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--sub,#6b7280);">[ Chat UI screenshot — coming soon ]</span></div>
+            <div class="carousel-slide" style="min-height:480px;background:var(--bg2,#f8fafc);"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--sub,#6b7280);">[ Mood analytics dashboard — coming soon ]</span></div>
+          </div>
+          <button class="carousel-btn carousel-prev" onclick="carouselMove('anchorai',-1)">&#8592;</button>
+          <button class="carousel-btn carousel-next" onclick="carouselMove('anchorai',1)">&#8594;</button>
+          <div class="carousel-dots" id="dots-anchorai"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECT 5: ConfidenceOS -->
     <article class="card" style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);overflow:hidden;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
       <div style="background:var(--bg2,#f8fafc);border-bottom:1px solid var(--line,rgba(17,24,39,.09));padding:26px clamp(20px,3vw,34px);">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;">
@@ -372,7 +423,7 @@ a:hover { color: var(--accent, #2563eb); }
       </div>
     </article>
 
-    <!-- PROJECT 5: LifeGraph -->
+    <!-- PROJECT 6: LifeGraph -->
     <article class="card" style="border-radius:20px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);overflow:hidden;box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.05));">
       <div style="background:var(--bg2,#f8fafc);border-bottom:1px solid var(--line,rgba(17,24,39,.09));padding:26px clamp(20px,3vw,34px);">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;">
@@ -674,6 +725,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initCarousel('techlens', 6);
   initCarousel('lifegraph', 3);
   initCarousel('guidepost', 3);
+  initCarousel('anchorai', 3);
   initCarousel('confidenceos', 2);
 
   // Lightbox
