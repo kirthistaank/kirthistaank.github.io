@@ -68,7 +68,13 @@ a:hover { color: var(--accent, #2563eb); }
       <span id="themeDot" style="width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;background:#111827;"></span>
       <span id="themeLabel">Dark</span>
     </button>
-    <a href="#contact" class="open-to-roles-btn" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:500;color:#fff;background:var(--accent,#2563eb);">Open to roles</a>
+    <div class="roles-wrapper">
+      <a href="#contact" class="open-to-roles-btn" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:500;color:#fff;background:var(--accent,#2563eb);">Open to roles ▾</a>
+      <div class="roles-popup">
+        <div class="roles-popup-title">Open to</div>
+        <p style="font-size:13.5px;line-height:1.6;color:var(--ink,#111827);margin:0;">Open to senior IC and lead roles building production-grade agentic systems, multi-agent orchestration, RAG pipelines, LLM platforms, and knowledge graph-powered reasoning.</p>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -366,7 +372,6 @@ a:hover { color: var(--accent, #2563eb); }
           <div class="carousel-track">
             <div class="carousel-slide" style="min-height:480px;"><img src="images/AnchorAI-architecture.jpeg" alt="AnchorAI System Architecture" style="max-height:440px;"></div>
             <div class="carousel-slide" style="min-height:480px;"><img src="images/AnchorAI-Dashboard.jpg" alt="AnchorAI Dashboard" style="max-height:440px;"></div>
-            <div class="carousel-slide" style="min-height:480px;background:var(--bg2,#f8fafc);"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--sub,#6b7280);">[ Mood analytics dashboard — coming soon ]</span></div>
           </div>
           <button class="carousel-btn carousel-prev" onclick="carouselMove('anchorai',-1)">&#8592;</button>
           <button class="carousel-btn carousel-next" onclick="carouselMove('anchorai',1)">&#8594;</button>
@@ -587,6 +592,7 @@ a:hover { color: var(--accent, #2563eb); }
         <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:16px;margin:0 0 16px;color:var(--ink,#111827);">ML &amp; Knowledge Graph</h3>
         <div style="display:flex;flex-wrap:wrap;gap:8px;">
           <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Neo4j AuraDB</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">ChromaDB</span>
           <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">PyTorch</span>
           <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">TensorFlow</span>
           <span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:7px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg2,#f8fafc);color:var(--sub,#6b7280);">Hugging Face</span>
@@ -673,8 +679,15 @@ a:hover { color: var(--accent, #2563eb); }
 </div>
 
 <style>
-.open-to-roles-btn { transition: background .2s, box-shadow .2s, transform .15s; }
-.open-to-roles-btn:hover { background: color-mix(in srgb, var(--accent,#2563eb) 85%, #000) !important; box-shadow: 0 4px 14px rgba(37,99,235,.35); transform: translateY(-1px); }
+.roles-wrapper { position:relative; display:inline-flex; }
+.roles-popup { position:absolute; top:calc(100% + 10px); right:0; background:var(--bg,#fff); border:1px solid var(--line,rgba(17,24,39,.12)); border-radius:14px; box-shadow:0 8px 32px rgba(17,24,39,.13); padding:16px 18px; min-width:260px; z-index:100; opacity:0; pointer-events:none; transform:translateY(-6px); transition:opacity .2s, transform .2s; }
+.roles-wrapper:hover .roles-popup { opacity:1; pointer-events:auto; transform:translateY(0); }
+.roles-popup-title { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--sub,#6b7280); margin-bottom:12px; }
+.roles-popup-item { display:flex; align-items:center; gap:9px; padding:8px 0; border-bottom:1px solid var(--line,rgba(17,24,39,.07)); font-size:13.5px; color:var(--ink,#111827); }
+.roles-popup-item:last-child { border-bottom:none; padding-bottom:0; }
+.roles-popup-dot { width:6px; height:6px; border-radius:50%; background:var(--accent,#2563eb); flex-shrink:0; }
+.open-to-roles-btn { transition: background .2s, box-shadow .2s; }
+.open-to-roles-btn:hover { background: color-mix(in srgb, var(--accent,#2563eb) 85%, #000) !important; box-shadow: 0 4px 14px rgba(37,99,235,.3); }
 .card { transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
 .card:hover { border-color: color-mix(in srgb, #2563eb 45%, rgba(17,24,39,.1)); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(17,24,39,.08); }
 .proj-carousel { position:relative; overflow:hidden; border-radius:12px; border:1px solid var(--line,rgba(17,24,39,.1)); background:var(--bg,#fff); }
@@ -727,7 +740,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initCarousel('techlens', 6);
   initCarousel('lifegraph', 3);
   initCarousel('guidepost', 3);
-  initCarousel('anchorai', 3);
+  initCarousel('anchorai', 2);
   initCarousel('confidenceos', 2);
 
   // Lightbox
