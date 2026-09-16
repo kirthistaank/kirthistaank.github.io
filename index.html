@@ -517,50 +517,62 @@ a:hover { color: var(--accent, #2563eb); }
 <section id="writing" style="max-width:1080px;margin:0 auto;padding:clamp(48px,6vw,90px) clamp(20px,6vw,72px);">
   <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent,#2563eb);">Writing</span>
   <h2 style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(28px,3.6vw,42px);letter-spacing:-0.02em;margin:10px 0 40px;color:var(--ink,#111827);">Notes on building AI systems</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;">
+  <div id="writing-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;">
 
-    <a href="https://medium.com/@kirthis/the-missing-layer-in-enterprise-ai-demystifying-the-ai-gateway-c7432a8980c5" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · Enterprise AI</span>
-      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">The Missing Layer in Enterprise AI: Demystifying the AI Gateway</h3>
-      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">The infrastructure layer bridging enterprise systems with LLMs — managing costs, compliance, and safe production deployments at scale. Directly relevant to any enterprise AI platform engineering role.</p>
+    <a data-wpage="1" href="https://kirthis.medium.com/from-chatbots-to-action-bots-designing-safe-tool-discovery-and-authorization-for-agentic-ai-83aa13463eff" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · Agentic AI</span>
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">From Chatbots to Action Bots: Designing Safe Tool Discovery and Authorization for Agentic AI</h3>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">How agentic systems safely discover, select, and get authorized to use tools — the design principles behind building action-taking AI that doesn't go off the rails in production.</p>
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
     </a>
 
-    <a href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+    <a data-wpage="1" href="https://medium.com/@kirthis/the-missing-layer-in-enterprise-ai-demystifying-the-ai-gateway-c7432a8980c5" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · Enterprise AI</span>
+      <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">The Missing Layer in Enterprise AI: Demystifying the AI Gateway</h3>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">The infrastructure layer bridging enterprise systems with LLMs — managing costs, compliance, and safe production deployments at scale.</p>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
+    </a>
+
+    <a data-wpage="1" href="https://kirthis.medium.com/the-bridge-between-intuition-and-logic-an-introduction-to-neurosymbolic-ai-fdbf05d8e79c" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
       <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · AI Architecture</span>
       <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">The Bridge Between Intuition and Logic: An Introduction to Neurosymbolic AI</h3>
       <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">How combining neural networks with symbolic reasoning creates more explainable, trustworthy, human-like AI — the theoretical foundation behind TraceMind.</p>
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
     </a>
 
-    <a href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+    <a data-wpage="1" href="https://kirthis.medium.com/lifegraph-ai-social-resource-navigator-a7f9333437b9" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
       <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · LifeGraph series · Graph AI</span>
       <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">Why Graphs Solve Social Program Navigation (Part 1 of 3)</h3>
       <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">How graph reasoning beats linear search — the architecture decisions behind LifeGraph's multi-hop knowledge graph traversal.</p>
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
     </a>
 
-    <a href="https://medium.com/@kirthis/the-hybrid-ai-strategy-balancing-geminis-magic-with-local-nlp-models-5214de732363" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+    <a data-wpage="1" href="https://medium.com/@kirthis/the-hybrid-ai-strategy-balancing-geminis-magic-with-local-nlp-models-5214de732363" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
       <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · LLM Strategy</span>
       <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">The Hybrid AI Strategy: Balancing Gemini's Magic with Local NLP Models</h3>
       <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">Comparing cloud LLMs with local NLP models — a practical guide to privacy, cost, and latency trade-offs at enterprise scale.</p>
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
     </a>
 
-    <a href="https://medium.com/@kirthis/growth-isnt-a-straight-line-my-journey-through-uc-berkeley-s-mids-and-the-art-of-the-pivot-9beb53e79903" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+    <a data-wpage="1" href="https://medium.com/@kirthis/growth-isnt-a-straight-line-my-journey-through-uc-berkeley-s-mids-and-the-art-of-the-pivot-9beb53e79903" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
       <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · Career</span>
       <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">Growth Isn't a Straight Line: My Journey Through UC Berkeley's MIDS</h3>
       <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">Reflections on career transitions, continuous learning, and embracing uncertainty on the path to AI engineering.</p>
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
     </a>
 
-    <a href="https://medium.com/@kirthis/from-uncertainty-to-opportunity-what-wids-mentorship-did-for-my-career-7a6ad0410e57" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
+    <a data-wpage="2" href="https://medium.com/@kirthis/from-uncertainty-to-opportunity-what-wids-mentorship-did-for-my-career-7a6ad0410e57" target="_blank" class="card" style="display:flex;flex-direction:column;gap:12px;padding:26px;border-radius:16px;border:1px solid var(--line,rgba(17,24,39,.1));background:var(--bg,#fff);box-shadow:0 1px 3px var(--shadow,rgba(17,24,39,.04));">
       <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub,#6b7280);">Medium · 2026 · Leadership</span>
       <h3 style="font-family:'Space Grotesk';font-weight:600;font-size:18px;line-height:1.3;margin:0;color:var(--ink,#111827);">From Uncertainty to Opportunity: What WIDS Mentorship Did for My Career</h3>
       <p style="font-size:13.5px;line-height:1.6;color:var(--sub,#6b7280);margin:0;flex:1;">How strategic mentorship and community support transformed my trajectory in data science and AI engineering.</p>
       <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent,#2563eb);margin-top:4px;">Read on Medium ↗</span>
     </a>
 
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px;">
+    <button id="writing-prev" onclick="writingNav(-1)" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);color:var(--sub,#6b7280);font-family:'JetBrains Mono',monospace;font-size:12.5px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent,#2563eb)';this.style.color='var(--accent,#2563eb)'" onmouseout="this.style.borderColor='var(--line,rgba(17,24,39,.12))';this.style.color='var(--sub,#6b7280)'">← Older</button>
+    <span id="writing-page-label" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub,#6b7280);">1 / 2</span>
+    <button id="writing-next" onclick="writingNav(1)" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;border:1px solid var(--line,rgba(17,24,39,.12));background:var(--bg,#fff);color:var(--sub,#6b7280);font-family:'JetBrains Mono',monospace;font-size:12.5px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent,#2563eb)';this.style.color='var(--accent,#2563eb)'" onmouseout="this.style.borderColor='var(--line,rgba(17,24,39,.12))';this.style.color='var(--sub,#6b7280)'">Newer →</button>
   </div>
 </section>
 
@@ -735,7 +747,20 @@ function carouselMove(id, dir) {
   const count = document.querySelectorAll('#carousel-' + id + ' .carousel-slide').length;
   _goCarousel(id, ((_carousels[id] || 0) + dir + count) % count, count);
 }
+let writingCurrentPage = 1;
+const writingTotalPages = 2;
+function writingNav(dir) {
+  writingCurrentPage = Math.max(1, Math.min(writingTotalPages, writingCurrentPage + dir));
+  document.querySelectorAll('#writing-grid [data-wpage]').forEach(el => {
+    el.style.display = parseInt(el.dataset.wpage) === writingCurrentPage ? '' : 'none';
+  });
+  document.getElementById('writing-page-label').textContent = writingCurrentPage + ' / ' + writingTotalPages;
+  document.getElementById('writing-prev').style.opacity = writingCurrentPage === 1 ? '0.35' : '1';
+  document.getElementById('writing-next').style.opacity = writingCurrentPage === writingTotalPages ? '0.35' : '1';
+}
+
 window.addEventListener('DOMContentLoaded', () => {
+  writingNav(0);
   initCarousel('tracemind', 5);
   initCarousel('techlens', 6);
   initCarousel('lifegraph', 3);
